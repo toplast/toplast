@@ -28,7 +28,7 @@ yarn serve
 ## Run tests
 
 ```sh
-yarn test
+yarn test:unit
 ```
 
 ## Author
