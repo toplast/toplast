@@ -1,7 +1,14 @@
-import { expect } from 'chai'
-import { shallowMount } from '@vue/test-utils'
-import Weekly from '@/views/charts/Weekly.vue'
+// Libraries
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+// Utilities
+import { mount, createLocalVue } from '@vue/test-utils'
+// Components
 import weeklyAsset from '@/assets/weekly.json'
+import Weekly from '@/views/charts/Weekly.vue'
+
+const localVue = createLocalVue()
+Vue.use(Vuetify)
 
 describe('Weekly.vue', () => {
   let wrapper
@@ -11,22 +18,22 @@ describe('Weekly.vue', () => {
   })
 
   it('title should be WeeklyChart', () => {
-    wrapper = shallowMount(Weekly)
+    wrapper = mount(Weekly, { localVue })
 
-    expect(wrapper.name()).to.equal('WeeklyChart')
+    expect(wrapper.name()).toEqual('WeeklyChart')
   })
 
   it('renders sections title', () => {
-    wrapper = shallowMount(Weekly)
+    wrapper = mount(Weekly, { localVue })
 
-    expect(wrapper.text()).to.include('Most listened album')
-    expect(wrapper.text()).to.include('Most listened artist')
-    expect(wrapper.text()).to.include('Most listened track')
+    expect(wrapper.text()).toContain('Most listened album')
+    expect(wrapper.text()).toContain('Most listened artist')
+    expect(wrapper.text()).toContain('Most listened track')
   })
 
   it('json asset is properly set on data', () => {
-    wrapper = shallowMount(Weekly)
+    wrapper = mount(Weekly, { localVue })
 
-    expect(wrapper.vm.$data).to.deep.equal(weeklyAsset)
+    expect(wrapper.vm.$data).toEqual(weeklyAsset)
   })
 })
