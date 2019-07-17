@@ -1,6 +1,9 @@
 <h1 align="center">Welcome to TopLast 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <a href="https://app.netlify.com/sites/toplast/deploys">
+    <img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/3db26481-ff49-4e26-af92-c9ea63dfb1cb/deploy-status" target="_blank" />
+  </a>
   <a href="https://twitter.com/castilh0s">
     <img alt="Twitter: castilh0s" src="https://img.shields.io/twitter/follow/castilh0s.svg?style=social" target="_blank" />
   </a>
