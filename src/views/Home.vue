@@ -1,11 +1,13 @@
 <template>
   <VContainer text-xs-center>
-    TopLast
+    <div class="display-1">
+      TopLast
+    </div>
   </VContainer>
 </template>
 
 <script>
-  export default {
-      name: 'Home'
-  }
+export default {
+  name: 'Home'
+}
 </script>
