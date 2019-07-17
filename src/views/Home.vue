@@ -1,13 +1,11 @@
 <template>
-  <HelloWorld />
+  <VContainer text-xs-center>
+    TopLast
+  </VContainer>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
-
   export default {
-    components: {
-      HelloWorld
-    }
+      name: 'Home'
   }
 </script>
