@@ -1,12 +1,14 @@
 <template>
   <VToolbar color="primary" dense prominent dark>
-    <VToolbarTitle class="font-weight-bold" @click="$router.push('/')">
+    <VToolbarTitle class="clickable font-weight-bold" @click="$router.push('/')">
       TopLast
     </VToolbarTitle>
     <VSpacer/>
 
-    <VBtn flat @click="$router.push('/login')">
-      Login&nbsp;
+    <VBtn v-if="isLogged" flat icon @click="$router.push('/account')">
+      <VIcon>mdi-account</VIcon>
+    </VBtn>
+    <VBtn v-else icon flat @click="$router.push('/login')">
       <VIcon>mdi-login</VIcon>
     </VBtn>
   </VToolbar>
@@ -14,6 +16,17 @@
 
 <script>
 export default {
-  name: 'Toolbar'
+  name: 'Toolbar',
+  computed: {
+    isLogged () {
+      return Math.random() >= 0.5
+    }
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+.clickable {
+  cursor: pointer;
+}
+</style>
