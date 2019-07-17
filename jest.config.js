@@ -1,4 +1,19 @@
 module.exports = {
+  collectCoverage: true,
+  collectCoverageFrom: [
+    'src/assets/**/*.{js,vue}',
+    'src/components/**/*.{js,vue}',
+    'src/views/**/*.{js,vue}'
+  ],
+  coverageReporters: ['lcov', 'text-summary'],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80
+    }
+  },
   moduleFileExtensions: [
     'js',
     'jsx',
