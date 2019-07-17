@@ -3,7 +3,7 @@
     <VCard flat tile :color="`#${colors.topAlbum.backgroundColor}`">
       <VLayout class="align-center height--275">
         <VFlex xs7 px-3 :style="`color: #${colors.topAlbum.textColor};`">
-          <div class="headline font-weight-light">Principal álbum</div>
+          <div class="headline font-weight-light">Most listened album</div>
           <div class="display-2 font-weight-regular">{{ topAlbum.name }}</div>
           <div class="headline font-weight-regular">{{ topAlbum.artist }}</div>
         </VFlex>
@@ -53,7 +53,7 @@
             </div>
 
             <div>
-              <div class="font-weight-light">Principal artista</div>
+              <div class="font-weight-light">Most listened artist</div>
               <div class="title font-weight-regular">{{ otherStats.topArtist.name }}</div>
             </div>
           </div>
@@ -72,7 +72,7 @@
             </div>
 
             <div>
-              <div class="font-weight-light">Principal faixa</div>
+              <div class="font-weight-light">Most listened track</div>
               <div class="title font-weight-regular">{{ otherStats.topTrack.name }}</div>
               <div class="font-weight-regular">{{ otherStats.topTrack.artist }}</div>
             </div>
@@ -86,7 +86,7 @@
 import weekly from '@/assets/weekly.json'
 
 export default {
-  name: 'Weekly',
+  name: 'WeeklyChart',
   data () {
     return {
       colors: {
@@ -104,7 +104,7 @@ export default {
   },
   mounted () {
     let param
-    if (this.$route.query.json) {
+    if (this.$route && this.$route.query.json) {
       param = JSON.parse(this.$route.query.json)
     } else {
       param = weekly
