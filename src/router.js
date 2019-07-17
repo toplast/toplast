@@ -12,11 +12,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/chart/weekly',
+      name: 'chart-weekly',
+      component: () => import(/* webpackChunkName: "chart-weekly" */ './views/chart/Weekly.vue')
     }
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    // }
   ]
 })
