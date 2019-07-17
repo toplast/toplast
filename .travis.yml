@@ -4,7 +4,11 @@ node_js: node
 cache: yarn
 
 notifications:
-  slack: castilh0s:$SLACK_TOKEN
+  slack:
+    rooms:
+      - castilh0s:$SLACK_TOKEN#toplast
+    on_success: always
+    on_failure: always
 
 script:
   - yarn test:unit
