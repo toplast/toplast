@@ -13,7 +13,6 @@ describe('Home.vue', () => {
   let wrapper
 
   beforeEach(() => {
-    // const vuetify = new Vuetify()
     wrapper = mount(Home, { localVue })
   })
 
