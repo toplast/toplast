@@ -3,10 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "serve": "concurrently 'yarn serve:client' 'yarn serve:server'",
+    "serve:client": "vue-cli-service serve",
+    "serve:server": "netlify-lambda serve functions -c webpack.server.js",
+    "build": "yarn build:client && yarn build:server",
+    "build:client": "vue-cli-service build",
+    "build:server": "netlify-lambda build functions",
+    "lint:client": "vue-cli-service lint",
+    "test:client": "vue-cli-service test:unit"
   },
   "dependencies": {
     "axios": "^0.19.0",
