@@ -15,13 +15,13 @@ script:
 env:
   - CI=true
 
-before_deploy:
-  - yarn global add netlify-cli
-  - yarn build
+# before_deploy:
+#   - yarn global add netlify-cli
+#   - yarn build
 
-deploy:
-  provider: script
-  script: netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN -p --dir ./dist
-  skip_cleanup: true
-  on:
-    branch: master
+# deploy:
+#   provider: script
+#   script: netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN -p --dir ./dist
+#   skip_cleanup: true
+#   on:
+#     branch: master
