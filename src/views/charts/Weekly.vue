@@ -30,7 +30,7 @@
           <VImg
             :src="albumm.cover"
             :alt="`${albumm.name} - ${albumm.artist}`"
-            class="elevation-3"
+            class="elevation-3 grey lighten-2"
             aspect-ratio="1"
           />
           <div class="pt-1 text-truncate body-2">{{ albumm.name }}</div>
@@ -39,7 +39,7 @@
       </VLayout>
     </VCard>
 
-    <VCard flat tile :color="`#${colors.otherStats.backgroundColor}`">
+    <VCard flat tile>
       <VLayout class="justify-center align-center height--100" :style="`color: #${colors.otherStats.textColor};`">
           <div class="pr-4" style="align-items: center; display: flex;">
             <div
