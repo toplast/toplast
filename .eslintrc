@@ -9,7 +9,8 @@
   ],
   "rules": {
     "no-console": "off",
-    "no-debugger": "off"
+    "no-debugger": "off",
+    "curly": "off"
   },
   "parserOptions": {
     "parser": "babel-eslint"
