@@ -91,6 +91,7 @@ typings/
 
 # Build output
 dist/
+functions/
 
 # Text editor and OS files
 .idea
