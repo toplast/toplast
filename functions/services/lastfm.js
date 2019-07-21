@@ -12,12 +12,11 @@ const paramsToString = (params) => {
   return query
 }
 
-const lastFm = async (method, params) => {
+export const lastFm = async (method, params) => {
   const _params = paramsToString(params)
-  let query = `?method=${method}&api_key=${config.LASTFM_API_KEY}&format=json`
+  const query = `?method=${method}&api_key=${config.LASTFM_API_KEY}&format=json`
 
-  const { data } = await axios
-    .get(config.LASTFM_API_URL + query + _params)
+  const { data } = await axios.get(config.LASTFM_API_URL + query + _params)
 
   const methodName = method
     .replace('get', '')
@@ -27,5 +26,3 @@ const lastFm = async (method, params) => {
 
   return data[methodName] || data
 }
-
-module.exports = { lastFm }

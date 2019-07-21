@@ -11,7 +11,7 @@ notifications:
     on_failure: always
 
 script:
-  - yarn test:client
+  - yarn test:unit
 env:
   - CI=true
 
