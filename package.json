@@ -9,8 +9,7 @@
     "build": "yarn build:client && yarn build:server",
     "build:client": "vue-cli-service build",
     "build:server": "netlify-lambda build src/functions",
-    "lint": "vue-cli-service lint",
-    "test:unit": "vue-cli-service test:unit"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -24,13 +23,11 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.2",
     "@vue/cli-plugin-eslint": "^3.9.2",
-    "@vue/cli-plugin-unit-jest": "^3.9.0",
     "@vue/cli-service": "^3.9.3",
     "@vue/eslint-config-standard": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.2",
-    "babel-jest": "^24.8.0",
     "concurrently": "^4.1.1",
     "dotenv": "^8.0.0",
     "eslint": "^6.1.0",
