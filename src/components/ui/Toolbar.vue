@@ -5,23 +5,23 @@
     </VToolbarTitle>
     <VSpacer/>
 
-    <VBtn v-if="isLogged" flat icon @click="$router.push('/account')">
+    <!-- <VBtn v-if="isLogged" flat icon @click="$router.push('/account')">
       <VIcon>mdi-account</VIcon>
     </VBtn>
     <VBtn v-else icon flat @click="$router.push('/login')">
       <VIcon>mdi-login</VIcon>
-    </VBtn>
+    </VBtn> -->
   </VToolbar>
 </template>
 
 <script>
 export default {
-  name: 'Toolbar',
-  computed: {
-    isLogged () {
-      return Math.random() >= 0.5
-    }
-  }
+  name: 'Toolbar'
+  // computed: {
+  //   isLogged () {
+  //     return Math.random() >= 0.5
+  //   }
+  // }
 }
 </script>
 
