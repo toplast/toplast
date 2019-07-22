@@ -1,4 +1,5 @@
 const getImageColors = require('get-image-colors')
+const { searchArtistImage, searchTrackImage } = require('./services/spotify')
 const { lastFm } = require('./services/lastfm')
 
 const handleOptions = ({ option, user, period }) => {
@@ -68,8 +69,7 @@ const handleArtistData = async (artists) => {
     delete artist['streamable']
     delete artist['url']
 
-    // artist.image = await getArtistImage(artist.name)
-    artist.image = artist.image[artist.image.length - 1]['#text']
+    artist.image = await searchArtistImage(artist.name)
   }
 
   return artists
@@ -84,8 +84,7 @@ const handleTrackData = async (tracks) => {
     delete track['url']
 
     track.artist = track.artist.name
-    // track.image = await getTrackImage(track.name, track.artist)
-    track.image = track.image[track.image.length - 1]['#text']
+    track.image = await searchTrackImage(track.name, track.artist)
   }
 
   return tracks

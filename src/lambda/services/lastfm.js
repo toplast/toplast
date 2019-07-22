@@ -1,5 +1,5 @@
 const axios = require('axios')
-const config = require('./../config')
+const config = require('../config')
 
 const paramsToString = (params) => {
   const entries = Object.entries(params)

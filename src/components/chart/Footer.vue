@@ -20,7 +20,7 @@ import bestContrast from 'get-best-contrast-color'
 export default {
   name: 'ChartFooter',
   props: {
-    items: { type: Object, default: () => {} },
+    items: { type: Array, default: () => [] },
     colors: { type: Array, default: () => [] }
   },
   components: { Item },
