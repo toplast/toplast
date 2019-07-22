@@ -14,9 +14,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/chart/weekly',
-      name: 'chart-weekly',
-      component: () => import(/* webpackChunkName: "chart-weekly" */ './views/charts/Weekly.vue')
+      path: '/chart',
+      name: 'chart',
+      component: () => import(/* webpackChunkName: "chart" */ './views/Chart.vue')
     }
   ]
 })
