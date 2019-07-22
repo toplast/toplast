@@ -10,9 +10,7 @@
         <img
           :src="item.image"
           :alt="item.title"
-          width="170"
-          height="170"
-          class="elevation-5"
+          class="elevation-5 image"
           :style="item.round ? 'border-radius: 100%' : ''"
         />
         <div class="pt-1 text-truncate body-2">
@@ -44,3 +42,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.image {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+}
+</style>
