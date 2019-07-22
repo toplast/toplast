@@ -35,16 +35,16 @@ export const handleChart = (option, data) => {
     sections[option - 1]
   )
   const body = buildBody(data[option - 1])
-  const footer = {
-    left: buildSection(
+  const footer = [
+    buildSection(
       (data[option] || data[option - 3])[0],
       sections[option] || sections[option - 3]
     ),
-    right: buildSection(
+    buildSection(
       (data[option - 2] || data[option + 1])[0],
       sections[option - 2] || sections[option + 1]
     )
-  }
+  ]
 
   return { header, body, footer }
 }

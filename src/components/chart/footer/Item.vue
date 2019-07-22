@@ -1,17 +1,19 @@
 <template>
-  <v-list-tile>
-    <v-list-tile-avatar size="75" color="grey darken-3">
-      <v-img
-        class="elevation-6"
-        src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-      ></v-img>
-    </v-list-tile-avatar>
-
-    <v-list-tile-content class="ml-3">
-      <v-list-tile-title>Evan You</v-list-tile-title>
-      <v-list-tile-subtitle>Evan You</v-list-tile-subtitle>
-    </v-list-tile-content>
-  </v-list-tile>
+  <div class="list">
+    <img
+      :src="data.image"
+      :alt="data.title"
+      width="78"
+      height="78"
+      class="elevation-2 mr-3"
+      :style="data.round ? 'border-radius: 100%' : ''"
+    />
+    <div :style="`color: ${textColor};`">
+      <div class="subheading font-weight-regular text-truncate">{{ data.sectionName }}</div>
+      <div class="headline font-weight-medium text-truncate">{{ data.title }}</div>
+      <div v-if="data.subtitle" class="title font-weight-light text-truncate">{{ data.subtitle }}</div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -23,3 +25,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>

@@ -9,7 +9,7 @@
       >
         <img
           :src="item.image"
-          :alt="`${item.title}`"
+          :alt="item.title"
           width="170"
           height="170"
           class="elevation-5"

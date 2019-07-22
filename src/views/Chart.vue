@@ -2,7 +2,7 @@
   <VCard flat tile width="750" height="750">
     <ChartHeader :data="chart.header" :colors="colors" />
     <ChartBody :items="chart.body" :colors="colors" />
-    <ChartFooter :data="chart.footer" :colors="colors" />
+    <ChartFooter :items="chart.footer" :colors="colors" />
   </VCard>
 </template>
 

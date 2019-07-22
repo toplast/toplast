@@ -1,11 +1,13 @@
 <template>
   <VCard flat tile color="#fafafa" height="150">
-    <VLayout px-2 align-center fill-height>
-      <VFlex xs6 px-2 text-xs-center :style="`color: ${textColor};`">
-        <Item :data="data.left" :textColor="textColor" />
-      </VFlex>
-      <VFlex xs6 px-2 text-xs-center :style="`color: ${textColor};`">
-        <Item :data="data.right" :textColor="textColor" />
+    <VLayout px-3 align-center fill-height>
+      <VFlex
+        v-for="(item, i) in items"
+        :key="i"
+        class="xs6 px-3"
+        :style="`color: ${textColor};`"
+      >
+        <Item :data="item" :textColor="textColor" />
       </VFlex>
     </VLayout>
   </VCard>
@@ -18,7 +20,7 @@ import bestContrast from 'get-best-contrast-color'
 export default {
   name: 'ChartFooter',
   props: {
-    data: { type: Object, default: () => {} },
+    items: { type: Object, default: () => {} },
     colors: { type: Array, default: () => [] }
   },
   components: { Item },

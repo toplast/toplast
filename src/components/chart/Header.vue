@@ -15,7 +15,7 @@
       <VFlex xs4 text-xs-center>
         <img
           :src="data.image"
-          :alt="`${data.title}`"
+          :alt="data.title"
           width="200"
           height="200"
           class="elevation-6"
