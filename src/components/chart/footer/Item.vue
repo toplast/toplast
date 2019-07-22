@@ -3,9 +3,7 @@
     <img
       :src="data.image"
       :alt="data.title"
-      width="78"
-      height="78"
-      class="elevation-2 mr-3"
+      class="elevation-2 mr-3 image"
       :style="data.round ? 'border-radius: 100%' : ''"
     />
     <div :style="`color: ${textColor};`">
@@ -31,5 +29,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.image {
+  width: 78px;
+  height: 78px;
+  object-fit: cover;
 }
 </style>

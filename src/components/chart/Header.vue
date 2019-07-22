@@ -16,9 +16,7 @@
         <img
           :src="data.image"
           :alt="data.title"
-          width="200"
-          height="200"
-          class="elevation-6"
+          class="elevation-6 image"
           :style="data.round ? 'border-radius: 100%' : ''"
         />
       </VFlex>
@@ -44,3 +42,11 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+</style>
