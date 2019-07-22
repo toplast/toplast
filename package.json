@@ -5,10 +5,10 @@
   "scripts": {
     "serve": "concurrently 'yarn serve:client' 'yarn serve:server'",
     "serve:client": "vue-cli-service serve",
-    "serve:server": "netlify-lambda serve src/functions",
+    "serve:server": "netlify-lambda -c ./webpack.functions.js serve src/lambda",
     "build": "yarn build:client && yarn build:server",
     "build:client": "vue-cli-service build",
-    "build:server": "netlify-lambda build src/functions",
+    "build:server": "netlify-lambda -c ./webpack.functions.js build src/lambda",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "core-js": "^3.1.4",
     "get-best-contrast-color": "^0.3.1",
     "get-image-colors": "^2.0.0",
+    "spotify-web-api-node": "^4.0.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.7",
     "vuetify": "^1.5.16",
@@ -41,7 +42,8 @@
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-vuetify": "^0.5.0",
     "vue-template-compiler": "^2.6.10",
-    "vuetify-loader": "^1.2.2"
+    "vuetify-loader": "^1.2.2",
+    "webpack": "^4.36.1"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
