@@ -1,0 +1,27 @@
+service: toplast-api
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  # memorySize: 1536
+
+plugins:
+  - serverless-bundle
+  - serverless-offline
+
+package:
+  individually: true
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
+  getChartInfo:
+    handler: handler.getChartInfo
+    events:
+      - http:
+          path: getChartInfo
+          method: get
