@@ -18,3 +18,10 @@ functions:
       - http:
           path: getTopArtists
           method: get
+
+  getTopAlbums:
+    handler: src/functions/lastfm/albums/albums.handle
+    events:
+      - http:
+          path: getTopAlbums
+          method: get
