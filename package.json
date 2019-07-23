@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "TopLast serverless API",
   "scripts": {
-    "start": "serverless offline start",
-    "test": "serverless-bundle test"
+    "start": "serverless offline start"
   },
   "author": "Henrique de Castilhos",
   "license": "MIT",
@@ -13,8 +12,15 @@
     "url": "https://github.com/castilh0s/toplast-api.git"
   },
   "devDependencies": {
-    "serverless-bundle": "^1.2.2",
-    "serverless-offline": "^5.3.3"
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "serverless-offline": "^5.8.0",
+    "serverless-webpack": "^5.3.1",
+    "webpack": "^4.37.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "axios": "^0.19.0",
+    "spotify-web-api-node": "^4.0.0"
+  }
 }
