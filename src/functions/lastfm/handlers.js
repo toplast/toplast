@@ -1,4 +1,4 @@
-module.exports.handleParams = params => Object.assign({}, params, {
+module.exports.handleParams = params => Object.assign({
   period: '7day',
   limit: '1',
-});
+}, params);
