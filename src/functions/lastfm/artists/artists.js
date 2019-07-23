@@ -1,10 +1,10 @@
-import { buildResponse } from '../../../shared/build-response';
-import { handleArtists } from './handlers';
-import { handleParams } from '../handlers';
-import { lastfm } from '../../../services/lastfm';
-import { validateParams } from '../validators';
+const { buildResponse } = require('../../../shared/build-response');
+const { handleArtists } = require('./handlers');
+const { handleParams } = require('../handlers');
+const { lastfm } = require('../../../services/lastfm');
+const { validateParams } = require('../validators');
 
-export const handle = async (event) => {
+module.exports.handle = async (event) => {
   let params = event.queryStringParameters;
   params = handleParams(params);
 

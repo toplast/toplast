@@ -1,1 +1,1 @@
-export const validateParams = params => (Boolean(params) && Boolean(params.user));
+module.exports.validateParams = params => (Boolean(params) && Boolean(params.user));

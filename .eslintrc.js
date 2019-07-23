@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    es6: true,
+    commonjs: true,
     node: true,
   },
   extends: [
@@ -10,12 +10,6 @@ module.exports = {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
   rules: {
-    'import/prefer-default-export': 'off',
-    'max-len': ['error', { 'code': 100 }]
   },
 };

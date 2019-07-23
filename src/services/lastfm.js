@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 
 const paramsToString = (params) => {
   const entries = Object.entries(params);
@@ -19,7 +19,7 @@ const getMethodName = method => method
   .pop()
   .toLowerCase();
 
-export const lastfm = async (method, params) => {
+module.exports.lastfm = async (method, params) => {
   const baseUrl = process.env.LASTFM_API_URL;
   const query = `?method=${method}&api_key=${process.env.LASTFM_API_KEY}&format=json`;
   const stringParameters = paramsToString(params);

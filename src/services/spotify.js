@@ -1,4 +1,4 @@
-import * as SpotifyWebApi from 'spotify-web-api-node';
+const SpotifyWebApi = require('spotify-web-api-node');
 
 const spotify = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
@@ -10,7 +10,7 @@ const setAccessToken = async () => {
   spotify.setAccessToken(body.access_token);
 };
 
-export const searchArtistImage = async (artistName) => {
+module.exports.searchArtistImage = async (artistName) => {
   if (!spotify.getAccessToken()) { await setAccessToken(); }
 
   const { body } = await spotify.searchArtists(artistName);

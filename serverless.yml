@@ -6,7 +6,6 @@ provider:
   environment: ${file(env.yml):${self:provider.stage}}
 
 plugins:
-  - serverless-webpack
   - serverless-offline
 
 package:
@@ -19,7 +18,3 @@ functions:
       - http:
           path: getTopArtists
           method: get
-
-custom:
-  webpack:
-    webpackConfig: 'webpack.config.js'

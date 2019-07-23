@@ -1,6 +1,6 @@
-import { searchArtistImage } from '../../../services/spotify';
+const { searchArtistImage } = require('../../../services/spotify');
 
-export const handleArtists = async (artists) => {
+module.exports.handleArtists = async (artists) => {
   const promises = await artists.map(async artist => ({
     name: artist.name,
     playcount: artist.playcount,

@@ -1,4 +1,4 @@
-export const buildResponse = (statusCode, response) => ({
+module.exports.buildResponse = (statusCode, response) => ({
   body: JSON.stringify(response),
   statusCode,
 });
