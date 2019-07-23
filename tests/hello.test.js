@@ -1,4 +1,4 @@
-import * as handler from '../handler';
+import * as hello from '../src/hello/hello';
 
 test('hello', async () => {
   const event = 'event';
@@ -8,5 +8,5 @@ test('hello', async () => {
     expect(typeof response.body).toBe("string");
   };
 
-  await handler.hello(event, context, callback);
+  await hello.handle(event, context, callback);
 });

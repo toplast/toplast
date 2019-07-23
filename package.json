@@ -1,16 +1,16 @@
 {
-  "name": "new-api-toplast",
-  "version": "1.1.0",
-  "description": "A Node.js starter for the Serverless Framework with async/await and unit test support",
-  "main": "handler.js",
+  "name": "toplast-api",
+  "version": "1.0.0",
+  "description": "TopLast serverless API",
   "scripts": {
+    "start": "serverless offline start",
     "test": "serverless-bundle test"
   },
-  "author": "",
+  "author": "Henrique de Castilhos",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AnomalyInnovations/serverless-nodejs-starter.git"
+    "url": "https://github.com/castilh0s/toplast-api.git"
   },
   "devDependencies": {
     "serverless-bundle": "^1.2.2",

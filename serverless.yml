@@ -1,20 +1,20 @@
 service: toplast-api
 
-package:
-  individually: true
-
-plugins:
-  - serverless-bundle
-  - serverless-offline
-
 provider:
   name: aws
   runtime: nodejs8.10
   environment: ${file(env.yml):${self:provider.stage}}
 
+plugins:
+  - serverless-bundle
+  - serverless-offline
+
+package:
+  individually: true
+
 functions:
   hello:
-    handler: handler.hello
+    handler: src/hello/hello.handle
     events:
       - http:
           path: hello
