@@ -14,7 +14,9 @@ module.exports.handle = async (event) => {
 
   const response = await lastfm('user.getTopArtists', params);
 
-  if (response.status !== 200) { return buildResponse(response.status, response.body); }
+  if (response.status !== 200) {
+    return buildResponse(response.status, response.body);
+  }
 
   const artists = await handleArtists(response.body.artist);
   return buildResponse(200, artists);

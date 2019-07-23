@@ -12,16 +12,23 @@ package:
   individually: true
 
 functions:
-  getTopArtists:
-    handler: src/functions/lastfm/artists/artists.handle
-    events:
-      - http:
-          path: getTopArtists
-          method: get
-
-  getTopAlbums:
+  getAlbums:
     handler: src/functions/lastfm/albums/albums.handle
     events:
       - http:
-          path: getTopAlbums
+          path: getAlbums
+          method: get
+
+  getArtists:
+    handler: src/functions/lastfm/artists/artists.handle
+    events:
+      - http:
+          path: getArtists
+          method: get
+
+  getTracks:
+    handler: src/functions/lastfm/tracks/tracks.handle
+    events:
+      - http:
+          path: getTracks
           method: get

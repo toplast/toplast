@@ -10,12 +10,31 @@ const setAccessToken = async () => {
   spotify.setAccessToken(body.access_token);
 };
 
-module.exports.searchArtistImage = async (artistName) => {
+const searchArtistImage = async (artistName) => {
   if (!spotify.getAccessToken()) { await setAccessToken(); }
 
   const { body } = await spotify.searchArtists(artistName);
-  const artist = body.artists.items[0];
-  const image = artist.images[1].url;
+  const artists = body.artists.items;
+  const artist = artists[0];
 
+  if (!artist) { return null; }
+
+  const image = artist.images[1].url;
   return image;
 };
+
+const searchTrackImage = async (artistName, trackName) => {
+  if (!spotify.getAccessToken()) { await setAccessToken(); }
+
+  const { body } = await spotify
+    .searchTracks(`track:${trackName} artist:${artistName}`);
+  const tracks = body.tracks.items;
+  const track = tracks[0];
+
+  if (!track) { return null; }
+
+  const image = track.album.images[1].url;
+  return image;
+};
+
+module.exports = { searchArtistImage, searchTrackImage };
