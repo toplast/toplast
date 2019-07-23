@@ -6,16 +6,20 @@ provider:
   environment: ${file(env.yml):${self:provider.stage}}
 
 plugins:
-  - serverless-bundle
+  - serverless-webpack
   - serverless-offline
 
 package:
   individually: true
 
 functions:
-  hello:
-    handler: src/hello/hello.handle
+  getTopArtists:
+    handler: src/functions/lastfm/artists/artists.handle
     events:
       - http:
-          path: hello
+          path: getTopArtists
           method: get
+
+custom:
+  webpack:
+    webpackConfig: 'webpack.config.js'
