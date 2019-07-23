@@ -11,5 +11,6 @@ module.exports = {
     SharedArrayBuffer: 'readonly',
   },
   rules: {
+    'max-len': ['error', { 'code': 85 }]
   },
 };
