@@ -3,17 +3,17 @@ service: toplast-api
 provider:
   name: aws
   runtime: nodejs8.10
+  memorySize: 2536
+  # iamRoleStatements:
+  #   - Effect: 'Allow'
+  #     Action:
+  #       - 's3:upload'
+  #     Resource: 'arn:aws:s3:::<BucketName>/*'
   environment: # Just for deployment purposes, in development use .env file
     LAST_FM_API_URL: 'https://ws.audioscrobbler.com/2.0/'
     LAST_FM_API_KEY: ''
     SPOTIFY_CLIENT_ID: ''
     SPOTIFY_CLIENT_SECRET: ''
-
-plugins:
-  - serverless-offline
-
-package:
-  individually: true
 
 functions:
   getAlbums:
@@ -39,3 +39,21 @@ functions:
           path: getTracks
           method: get
           cors: true
+
+package:
+  individually: true
+  exclude:
+    - node_modules/puppeteer/.local-chromium/**
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-chrome
+
+custom:
+  chrome:
+    flags:
+      - --window-size=1280,1696
+      - --hide-scrollbars
+      - --ignore-certificate-errors
+    functions:
+      - screenshot-function
