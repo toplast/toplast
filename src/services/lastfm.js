@@ -1,4 +1,5 @@
 const axios = require('axios');
+const config = require('../shared/config');
 
 const paramsToString = (params) => {
   const entries = Object.entries(params);
@@ -20,8 +21,8 @@ const getMethodName = method => method
   .toLowerCase();
 
 module.exports.lastfm = async (method, params) => {
-  const baseUrl = process.env.LASTFM_API_URL;
-  const query = `?method=${method}&api_key=${process.env.LASTFM_API_KEY}&format=json`;
+  const baseUrl = config.LASTFM_API_URL;
+  const query = `?method=${method}&api_key=${config.LASTFM_API_KEY}&format=json`;
   const stringParameters = paramsToString(params);
 
   const url = baseUrl + query + stringParameters;

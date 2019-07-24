@@ -1,8 +1,9 @@
 const SpotifyWebApi = require('spotify-web-api-node');
+const config = require('../shared/config');
 
 const spotify = new SpotifyWebApi({
-  clientId: process.env.SPOTIFY_CLIENT_ID,
-  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+  clientId: config.SPOTIFY_CLIENT_ID,
+  clientSecret: config.SPOTIFY_CLIENT_SECRET,
 });
 
 const setAccessToken = async () => {
