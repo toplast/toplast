@@ -26,22 +26,26 @@ A demo version of this service is hosted on AWS - [`https://z6pv80ao4l.execute-a
 
 And here is the ES7 source behind it
 
-``` javascript
+```javascript
 export const hello = async (event, context) => {
   return {
     statusCode: 200,
     body: JSON.stringify({
-      message: `Go Serverless v1.0! ${(await message({ time: 1, copy: 'Your function executed successfully!'}))}`,
-      input: event,
-    }),
+      message: `Go Serverless v1.0! ${await message({
+        time: 1,
+        copy: "Your function executed successfully!"
+      })}`,
+      input: event
+    })
   };
 };
 
-const message = ({ time, ...rest }) => new Promise((resolve, reject) =>
-  setTimeout(() => {
-    resolve(`${rest.copy} (with a delay)`);
-  }, time * 1000)
-);
+const message = ({ time, ...rest }) =>
+  new Promise((resolve, reject) =>
+    setTimeout(() => {
+      resolve(`${rest.copy} (with a delay)`);
+    }, time * 1000)
+  );
 ```
 
 ### Upgrading from v1.x
@@ -57,19 +61,19 @@ We have detailed instructions on how to upgrade your app to the v2.0 of the star
 
 To create a new Serverless project.
 
-``` bash
+```bash
 $ serverless install --url https://github.com/AnomalyInnovations/serverless-nodejs-starter --name my-project
 ```
 
 Enter the new directory
 
-``` bash
+```bash
 $ cd my-project
 ```
 
 Install the Node.js packages
 
-``` bash
+```bash
 $ npm install
 ```
 
@@ -77,25 +81,25 @@ $ npm install
 
 To run a function on your local
 
-``` bash
+```bash
 $ serverless invoke local --function hello
 ```
 
 To simulate API Gateway locally using [serverless-offline](https://github.com/dherault/serverless-offline)
 
-``` bash
+```bash
 $ serverless offline start
 ```
 
 Deploy your project
 
-``` bash
+```bash
 $ serverless deploy
 ```
 
 Deploy a single function
 
-``` bash
+```bash
 $ serverless deploy function --function hello
 ```
 
@@ -103,7 +107,7 @@ $ serverless deploy function --function hello
 
 Run your tests using
 
-``` bash
+```bash
 $ npm test
 ```
 
@@ -124,7 +128,7 @@ We use [ESLint](https://eslint.org) to lint your code via the [serverless-bundle
 
 You can turn this off by adding the following to your `serverless.yml`.
 
-``` yaml
+```yaml
 custom:
   bundle:
     linting: false

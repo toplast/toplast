@@ -4,10 +4,10 @@ provider:
   name: aws
   runtime: nodejs8.10
   environment: # Just for deployment purposes, in development use .env file
-    LASTFM_API_URL: 'https://ws.audioscrobbler.com/2.0/'
-    LASTFM_API_KEY: 'foo'
-    SPOTIFY_CLIENT_ID: 'foo'
-    SPOTIFY_CLIENT_SECRET: 'foo'
+    LAST_FM_API_URL: 'https://ws.audioscrobbler.com/2.0/'
+    LAST_FM_API_KEY: ''
+    SPOTIFY_CLIENT_ID: ''
+    SPOTIFY_CLIENT_SECRET: ''
 
 plugins:
   - serverless-offline
@@ -17,22 +17,25 @@ package:
 
 functions:
   getAlbums:
-    handler: src/functions/lastfm/albums/albums.handle
+    handler: services/get-albums/handler.main
     events:
       - http:
           path: getAlbums
           method: get
+          cors: true
 
   getArtists:
-    handler: src/functions/lastfm/artists/artists.handle
+    handler: services/get-artists/handler.main
     events:
       - http:
           path: getArtists
           method: get
+          cors: true
 
   getTracks:
-    handler: src/functions/lastfm/tracks/tracks.handle
+    handler: services/get-tracks/handler.main
     events:
       - http:
           path: getTracks
           method: get
+          cors: true
