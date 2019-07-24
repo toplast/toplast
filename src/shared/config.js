@@ -1,6 +1,6 @@
 const dotenv = require('dotenv');
 
-const { parsed } = dotenv.config();
+const parsed = dotenv.config().parsed || {};
 
 module.exports = {
   LASTFM_API_URL: parsed.LASTFM_API_URL || process.env.LASTFM_API_URL,
