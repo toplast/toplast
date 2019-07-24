@@ -3,7 +3,7 @@ service: toplast-api
 provider:
   name: aws
   runtime: nodejs8.10
-  environment: ${file(env.yml):${self:provider.stage}}
+  # environment: ${file(env.yml):${self:provider.stage}}
 
 plugins:
   - serverless-offline
