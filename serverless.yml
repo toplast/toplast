@@ -52,8 +52,8 @@ plugins:
 custom:
   chrome:
     flags:
-      - --window-size=1280,1696
+      # - --window-size=1280,1696
       - --hide-scrollbars
       - --ignore-certificate-errors
-    functions:
-      - screenshot-function
+    # functions:
+    #   - screenshot-function
