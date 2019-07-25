@@ -33,7 +33,8 @@
             :loading="loading"
             :disabled="!valid"
             @click="generateChart()"
-          >Generate chart</VBtn>
+            >Generate chart</VBtn
+          >
         </VFlex>
       </VLayout>
     </VForm>
@@ -41,11 +42,11 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
   name: 'Home',
-  data () {
+  data() {
     return {
       options: [
         { value: 'Top albums', option: '1' },
@@ -69,21 +70,21 @@ export default {
       rules: [v => !!v || 'Value is required'],
 
       loading: false
-    }
+    };
   },
   methods: {
-    encodeParam (param) {
-      let encodedParam = JSON.stringify(param)
-      encodedParam = encodeURIComponent(encodedParam)
+    encodeParam(param) {
+      let encodedParam = JSON.stringify(param);
+      encodedParam = encodeURIComponent(encodedParam);
 
-      return encodedParam
+      return encodedParam;
     },
-    async generateChart () {
-      this.loading = true
+    async generateChart() {
+      this.loading = true;
 
       const { data } = await axios.get(
         `.netlify/functions/getChartInfo?option=${this.option}&user=${this.user}&period=${this.period}`
-      )
+      );
 
       this.$router.push({
         path: '/chart',
@@ -94,8 +95,8 @@ export default {
           option: this.encodeParam(data.option),
           track: this.encodeParam(data.track)
         }
-      })
+      });
     }
   }
-}
+};
 </script>

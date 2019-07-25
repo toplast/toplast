@@ -2,12 +2,8 @@
   <VCard flat tile :color="colors[0]" height="325">
     <VLayout align-center fill-height>
       <VFlex xs8 px-3 :style="`color: ${textColor};`">
-        <div class="headline font-weight-light">
-          {{ data.sectionName }}
-        </div>
-        <div class="display-2 font-weight-regular">
-          {{ data.title }}
-        </div>
+        <div class="headline font-weight-light">{{ data.sectionName }}</div>
+        <div class="display-2 font-weight-regular">{{ data.title }}</div>
         <div v-if="data.subtitle" class="headline font-weight-regular">
           {{ data.subtitle }}
         </div>
@@ -25,7 +21,7 @@
 </template>
 
 <script>
-import bestContrast from 'get-best-contrast-color'
+import bestContrast from 'get-best-contrast-color';
 
 export default {
   name: 'ChartHeader',
@@ -34,13 +30,12 @@ export default {
     colors: { type: Array, default: () => [] }
   },
   computed: {
-    textColor: function () {
-      if (this.colors.length === 0)
-        return '#000'
-      return bestContrast(this.colors[0], this.colors)
+    textColor() {
+      if (this.colors.length === 0) return '#000';
+      return bestContrast(this.colors[0], this.colors);
     }
   }
-}
+};
 </script>
 
 <style scoped>

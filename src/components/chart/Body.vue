@@ -13,9 +13,7 @@
           class="elevation-5 image"
           :style="item.round ? 'border-radius: 100%' : ''"
         />
-        <div class="pt-1 text-truncate body-2">
-          {{ item.title }}
-        </div>
+        <div class="pt-1 text-truncate body-2">{{ item.title }}</div>
         <div v-if="item.subtitle" class="pt-1 text-truncate body-1">
           {{ item.subtitle }}
         </div>
@@ -25,7 +23,7 @@
 </template>
 
 <script>
-import bestContrast from 'get-best-contrast-color'
+import bestContrast from 'get-best-contrast-color';
 
 export default {
   name: 'ChartBody',
@@ -34,13 +32,12 @@ export default {
     colors: { type: Array, default: () => [] }
   },
   computed: {
-    textColor: function () {
-      if (this.colors.length === 0)
-        return '#000'
-      return bestContrast(this.colors[2], this.colors)
+    textColor() {
+      if (this.colors.length === 0) return '#000';
+      return bestContrast(this.colors[2], this.colors);
     }
   }
-}
+};
 </script>
 
 <style scoped>

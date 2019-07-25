@@ -3,23 +3,23 @@
     <Toolbar v-if="showUI" />
 
     <VContent>
-      <router-view/>
+      <router-view />
     </VContent>
   </VApp>
 </template>
 
 <script>
-import Toolbar from '@/components/ui/Toolbar'
+import Toolbar from '@/components/ui/Toolbar.vue';
 
 export default {
   name: 'App',
   components: { Toolbar },
   computed: {
-    showUI () {
-      const isChart = this.$route.path.search('chart') > -1
+    showUI() {
+      const isChart = this.$route.path.search('chart') > -1;
 
-      return !isChart
+      return !isChart;
     }
   }
-}
+};
 </script>
