@@ -4,13 +4,14 @@
     "node": true
   },
   "extends": [
-    "plugin:vue/essential",
-    "@vue/standard"
+    "plugin:vue/recommended",
+    "@vue/airbnb",
+    "prettier/vue",
+    "plugin:prettier/recommended"
   ],
   "rules": {
-    "no-console": "off",
-    "no-debugger": "off",
-    "curly": "off"
+    "no-console": "warn",
+    "no-debugger": "warn"
   },
   "parserOptions": {
     "parser": "babel-eslint"
