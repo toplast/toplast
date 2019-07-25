@@ -9,9 +9,13 @@
     "prettier/vue",
     "plugin:prettier/recommended"
   ],
+  "plugins": ["vuetify"],
   "rules": {
     "no-console": "warn",
-    "no-debugger": "warn"
+    "no-debugger": "warn",
+    "vuetify/no-deprecated-classes": "error",
+    "vuetify/grid-unknown-attributes": "error",
+    "vuetify/no-legacy-grid": "error"
   },
   "parserOptions": {
     "parser": "babel-eslint"
