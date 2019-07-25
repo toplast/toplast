@@ -79,23 +79,41 @@ export default {
 
       return encodedParam;
     },
+    handleLimit(option) {
+      return parseInt(this.option, 0) === option ? '5' : '1';
+    },
     async generateChart() {
       this.loading = true;
 
-      const { data } = await axios.get(
-        `.netlify/functions/getChartInfo?option=${this.option}&user=${this.user}&period=${this.period}`
-      );
+      const { user, period } = this;
+      const params = [
+        { limit: this.handleLimit(1), user, period },
+        { limit: this.handleLimit(2), user, period },
+        { limit: this.handleLimit(3), user, period }
+      ];
 
-      this.$router.push({
-        path: '/chart',
-        query: {
-          album: this.encodeParam(data.album),
-          artist: this.encodeParam(data.artist),
-          colors: this.encodeParam(data.colors),
-          option: this.encodeParam(data.option),
-          track: this.encodeParam(data.track)
-        }
-      });
+      const promises = [
+        axios.get('api/getAlbums', { params: params[0] }),
+        axios.get('api/getArtists', { params: params[1] }),
+        axios.get('api/getTracks', { params: params[2] })
+      ];
+
+      try {
+        let responses = await Promise.all(promises);
+        responses = responses.map(response => response.data);
+
+        this.$router.push({
+          path: '/chart',
+          query: {
+            album: this.encodeParam(responses[0]),
+            artist: this.encodeParam(responses[1]),
+            track: this.encodeParam(responses[2]),
+            option: this.encodeParam(this.option)
+          }
+        });
+      } catch (error) {
+        this.loading = false;
+      }
     }
   }
 };
