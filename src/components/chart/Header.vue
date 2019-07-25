@@ -1,22 +1,22 @@
 <template>
   <VCard flat tile :color="colors[0]" height="325">
-    <VLayout align-center fill-height>
-      <VFlex xs8 px-3 :style="`color: ${textColor};`">
+    <VRow class="fill-height" align="center">
+      <VCol class="px-3" cols="8" :style="`color: ${textColor};`">
         <div class="headline font-weight-light">{{ data.sectionName }}</div>
         <div class="display-2 font-weight-regular">{{ data.title }}</div>
         <div v-if="data.subtitle" class="headline font-weight-regular">
           {{ data.subtitle }}
         </div>
-      </VFlex>
-      <VFlex xs4 text-xs-center>
+      </VCol>
+      <VCol class="xs-4 text-center">
         <img
           :src="data.image"
           :alt="data.title"
           class="elevation-6 image"
           :style="data.round ? 'border-radius: 100%' : ''"
         />
-      </VFlex>
-    </VLayout>
+      </VCol>
+    </VRow>
   </VCard>
 </template>
 

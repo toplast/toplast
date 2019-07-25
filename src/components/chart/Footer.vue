@@ -1,15 +1,16 @@
 <template>
   <VCard flat tile color="#fafafa" height="150">
-    <VLayout px-3 align-center fill-height>
-      <VFlex
+    <VRow class="px-3 fill-height" align="center">
+      <VCol
         v-for="(item, i) in items"
         :key="i"
-        class="xs6 px-3"
+        cols="6"
+        class="px-3"
         :style="`color: ${textColor};`"
       >
         <Item :data="item" :text-color="textColor" />
-      </VFlex>
-    </VLayout>
+      </VCol>
+    </VRow>
   </VCard>
 </template>
 

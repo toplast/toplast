@@ -1,12 +1,12 @@
 <template>
-  <VContainer text-xs-center grid-list-md>
+  <VContainer class="text-center">
     <div class="display-1">TopLast</div>
     <VForm v-model="valid">
-      <VLayout wrap>
-        <VFlex xs12 md4>
+      <VRow>
+        <VCol cols="12" md="4">
           <VTextField v-model="user" label="Last.fm username" :rules="rules" />
-        </VFlex>
-        <VFlex xs12 md4>
+        </VCol>
+        <VCol cols="12" md="4">
           <VSelect
             v-model="option"
             item-text="value"
@@ -15,8 +15,8 @@
             :items="options"
             :rules="rules"
           />
-        </VFlex>
-        <VFlex xs12 md4>
+        </VCol>
+        <VCol cols="12" md="4">
           <VSelect
             v-model="period"
             item-text="value"
@@ -25,8 +25,8 @@
             :items="periods"
             :rules="rules"
           />
-        </VFlex>
-        <VFlex xs12 md3 offset-md9>
+        </VCol>
+        <VCol cols="12" md="3" offset-md="9">
           <VBtn
             block
             color="primary"
@@ -35,8 +35,8 @@
             @click="generateChart()"
             >Generate chart</VBtn
           >
-        </VFlex>
-      </VLayout>
+        </VCol>
+      </VRow>
     </VForm>
   </VContainer>
 </template>

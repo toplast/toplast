@@ -3,7 +3,7 @@
     <Toolbar v-if="showUI" />
 
     <VContent>
-      <router-view />
+      <RouterView />
     </VContent>
   </VApp>
 </template>

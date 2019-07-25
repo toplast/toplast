@@ -1,10 +1,11 @@
 <template>
   <VCard flat tile :color="colors[2]" height="275">
-    <VLayout px-1 align-center fill-height>
-      <VFlex
+    <VRow class="px-1 fill-height" align="center">
+      <VCol
         v-for="(item, i) in items"
         :key="i"
-        class="xs3 px-1 text-xs-center"
+        class="px-1 text-center"
+        cols="3"
         :style="`color: ${textColor};`"
       >
         <img
@@ -17,8 +18,8 @@
         <div v-if="item.subtitle" class="pt-1 text-truncate body-1">
           {{ item.subtitle }}
         </div>
-      </VFlex>
-    </VLayout>
+      </VCol>
+    </VRow>
   </VCard>
 </template>
 
