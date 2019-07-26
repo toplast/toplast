@@ -4,13 +4,18 @@
     "node": true
   },
   "extends": [
-    "plugin:vue/essential",
-    "@vue/standard"
+    "plugin:vue/recommended",
+    "@vue/airbnb",
+    "prettier/vue",
+    "plugin:prettier/recommended"
   ],
+  "plugins": ["vuetify"],
   "rules": {
-    "no-console": "off",
-    "no-debugger": "off",
-    "curly": "off"
+    "no-console": "warn",
+    "no-debugger": "warn",
+    "vuetify/no-deprecated-classes": "error",
+    "vuetify/grid-unknown-attributes": "error",
+    "vuetify/no-legacy-grid": "error"
   },
   "parserOptions": {
     "parser": "babel-eslint"

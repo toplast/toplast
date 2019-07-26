@@ -1,10 +1,11 @@
 <template>
   <VCard flat tile :color="colors[2]" height="275">
-    <VLayout px-1 align-center fill-height>
-      <VFlex
+    <VRow class="mx-1 fill-height" align="center">
+      <VCol
         v-for="(item, i) in items"
         :key="i"
-        class="xs3 px-1 text-xs-center"
+        class="px-1 text-center"
+        cols="3"
         :style="`color: ${textColor};`"
       >
         <img
@@ -13,19 +14,17 @@
           class="elevation-5 image"
           :style="item.round ? 'border-radius: 100%' : ''"
         />
-        <div class="pt-1 text-truncate body-2">
-          {{ item.title }}
-        </div>
+        <div class="pt-1 text-truncate body-2">{{ item.title }}</div>
         <div v-if="item.subtitle" class="pt-1 text-truncate body-1">
           {{ item.subtitle }}
         </div>
-      </VFlex>
-    </VLayout>
+      </VCol>
+    </VRow>
   </VCard>
 </template>
 
 <script>
-import bestContrast from 'get-best-contrast-color'
+import bestContrast from 'get-best-contrast-color';
 
 export default {
   name: 'ChartBody',
@@ -34,13 +33,12 @@ export default {
     colors: { type: Array, default: () => [] }
   },
   computed: {
-    textColor: function () {
-      if (this.colors.length === 0)
-        return '#000'
-      return bestContrast(this.colors[2], this.colors)
+    textColor() {
+      if (this.colors.length === 0) return '#000';
+      return bestContrast(this.colors[2], this.colors);
     }
   }
-}
+};
 </script>
 
 <style scoped>

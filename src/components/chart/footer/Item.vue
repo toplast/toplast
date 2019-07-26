@@ -7,9 +7,13 @@
       :style="data.round ? 'border-radius: 100%' : ''"
     />
     <div :style="`color: ${textColor};`">
-      <div class="subheading font-weight-regular text-truncate">{{ data.sectionName }}</div>
+      <div class="subheading font-weight-regular text-truncate">
+        {{ data.sectionName }}
+      </div>
       <div class="headline font-weight-medium text-truncate">{{ data.title }}</div>
-      <div v-if="data.subtitle" class="title font-weight-light text-truncate">{{ data.subtitle }}</div>
+      <div v-if="data.subtitle" class="title font-weight-light text-truncate">
+        {{ data.subtitle }}
+      </div>
     </div>
   </div>
 </template>
@@ -21,7 +25,7 @@ export default {
     data: { type: Object, default: () => {} },
     textColor: { type: String, default: '#000' }
   }
-}
+};
 </script>
 
 <style scoped>

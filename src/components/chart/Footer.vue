@@ -1,35 +1,35 @@
 <template>
   <VCard flat tile color="#fafafa" height="150">
-    <VLayout px-3 align-center fill-height>
-      <VFlex
+    <VRow class="px-3 fill-height" align="center">
+      <VCol
         v-for="(item, i) in items"
         :key="i"
-        class="xs6 px-3"
+        cols="6"
+        class="px-3"
         :style="`color: ${textColor};`"
       >
-        <Item :data="item" :textColor="textColor" />
-      </VFlex>
-    </VLayout>
+        <Item :data="item" :text-color="textColor" />
+      </VCol>
+    </VRow>
   </VCard>
 </template>
 
 <script>
-import Item from '@/components/chart/footer/Item.vue'
-import bestContrast from 'get-best-contrast-color'
+import bestContrast from 'get-best-contrast-color';
+import Item from '@/components/chart/footer/Item.vue';
 
 export default {
   name: 'ChartFooter',
+  components: { Item },
   props: {
     items: { type: Array, default: () => [] },
     colors: { type: Array, default: () => [] }
   },
-  components: { Item },
   computed: {
-    textColor: function () {
-      if (this.colors.length === 0)
-        return '#000'
-      return bestContrast('#f4f4f4', this.colors)
+    textColor() {
+      if (this.colors.length === 0) return '#000';
+      return bestContrast('#f4f4f4', this.colors);
     }
   }
-}
+};
 </script>

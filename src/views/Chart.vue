@@ -7,16 +7,17 @@
 </template>
 
 <script>
-import ChartHeader from '@/components/chart/Header.vue'
-import ChartBody from '@/components/chart/Body.vue'
-import ChartFooter from '@/components/chart/Footer.vue'
-import chartSample from '@/assets/chart.json'
-import { handleChart } from '@/assets/handleChart.js'
+import getImageColors from 'get-image-colors';
+import ChartHeader from '@/components/chart/Header.vue';
+import ChartBody from '@/components/chart/Body.vue';
+import ChartFooter from '@/components/chart/Footer.vue';
+import chartSample from '@/assets/chart.json';
+import handleChart from '@/assets/handleChart';
 
 export default {
   name: 'Chart',
   components: { ChartHeader, ChartBody, ChartFooter },
-  data () {
+  data() {
     return {
       albums: [],
       artists: [],
@@ -24,45 +25,45 @@ export default {
 
       colors: [],
       option: '1'
-    }
+    };
   },
   computed: {
-    chart: function () {
-      const data = [
-        this.albums,
-        this.artists,
-        this.tracks
-      ]
+    chart() {
+      const data = [[...this.albums], [...this.artists], [...this.tracks]];
 
-      return handleChart(this.option, data)
+      return handleChart(this.option, data);
     }
   },
-  mounted () {
-    let query = this.$route.query || {}
+  async mounted() {
+    const query = this.$route.query || {};
 
-    if (Object.keys(query).length !== 5) {
-      this.albums = chartSample.album
-      this.artists = chartSample.artist
-      this.tracks = chartSample.track
+    if (Object.keys(query).length !== 4) {
+      this.albums = chartSample.album;
+      this.artists = chartSample.artist;
+      this.tracks = chartSample.track;
 
-      this.colors = chartSample.colors
-      this.option = chartSample.option
+      this.colors = chartSample.colors;
+      this.option = chartSample.option;
     } else {
-      this.albums = this.decodeParam(query.album)
-      this.artists = this.decodeParam(query.artist)
-      this.tracks = this.decodeParam(query.track)
+      this.albums = this.decodeParam(query.album);
+      this.artists = this.decodeParam(query.artist);
+      this.tracks = this.decodeParam(query.track);
+      this.option = this.decodeParam(query.option);
 
-      this.colors = this.decodeParam(query.colors)
-      this.option = this.decodeParam(query.option)
+      if (this.chart.header) {
+        const palette = await getImageColors(this.chart.header.image);
+
+        this.colors = palette.map(color => color.hex());
+      }
     }
   },
   methods: {
-    decodeParam (param) {
-      let decodedParam = decodeURIComponent(param)
-      decodedParam = JSON.parse(decodedParam)
+    decodeParam(param) {
+      let decodedParam = decodeURIComponent(param);
+      decodedParam = JSON.parse(decodedParam);
 
-      return decodedParam
+      return decodedParam;
     }
   }
-}
+};
 </script>

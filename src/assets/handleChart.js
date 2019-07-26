@@ -1,4 +1,4 @@
-const getSectionName = (name) => `Most listened ${name}`
+const getSectionName = name => `Most listened ${name}`;
 
 const buildSection = (data = {}, section) => {
   return {
@@ -7,44 +7,39 @@ const buildSection = (data = {}, section) => {
     subtitle: data.artist,
     image: data.image,
     round: !data.artist
-  }
-}
+  };
+};
 
 const buildBody = (items = []) => {
-  const _items = []
-  for (const item of items) {
-    const _item = {
-      title: item.name,
-      subtitle: item.artist,
-      image: item.image,
-      round: !item.artist
-    }
+  return items.map(item => ({
+    title: item.name,
+    subtitle: item.artist,
+    image: item.image,
+    round: !item.artist
+  }));
+};
 
-    _items.push(_item)
-  }
-
-  return _items
-}
-
-export const handleChart = (option, data) => {
-  const sections = ['album', 'artist', 'track']
-  option = parseInt(option)
+const handleChart = (option, data) => {
+  const sections = ['album', 'artist', 'track'];
+  const parsedOption = parseInt(option, 0);
 
   const header = buildSection(
-    data[option - 1].shift(),
-    sections[option - 1]
-  )
-  const body = buildBody(data[option - 1])
+    data[parsedOption - 1].shift(),
+    sections[parsedOption - 1]
+  );
+  const body = buildBody(data[parsedOption - 1]);
   const footer = [
     buildSection(
-      (data[option] || data[option - 3])[0],
-      sections[option] || sections[option - 3]
+      (data[parsedOption] || data[parsedOption - 3])[0],
+      sections[parsedOption] || sections[parsedOption - 3]
     ),
     buildSection(
-      (data[option - 2] || data[option + 1])[0],
-      sections[option - 2] || sections[option + 1]
+      (data[parsedOption - 2] || data[parsedOption + 1])[0],
+      sections[parsedOption - 2] || sections[parsedOption + 1]
     )
-  ]
+  ];
 
-  return { header, body, footer }
-}
+  return { header, body, footer };
+};
+
+module.exports = handleChart;

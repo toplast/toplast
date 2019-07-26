@@ -65,11 +65,12 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
-.env.local
-.env.*.local
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
+
+# vue.js build output
+dist/
 
 # next.js build output
 .next
@@ -88,17 +89,3 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
-
-# Build output
-dist/
-functions/
-
-# Text editor and OS files
-.idea
-.vscode
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-.DS_Store/

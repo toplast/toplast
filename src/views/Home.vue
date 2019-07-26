@@ -1,12 +1,12 @@
 <template>
-  <VContainer text-xs-center grid-list-md>
+  <VContainer class="text-center">
     <div class="display-1">TopLast</div>
     <VForm v-model="valid">
-      <VLayout wrap>
-        <VFlex xs12 md4>
+      <VRow>
+        <VCol cols="12" md="4">
           <VTextField v-model="user" label="Last.fm username" :rules="rules" />
-        </VFlex>
-        <VFlex xs12 md4>
+        </VCol>
+        <VCol cols="12" md="4">
           <VSelect
             v-model="option"
             item-text="value"
@@ -15,8 +15,8 @@
             :items="options"
             :rules="rules"
           />
-        </VFlex>
-        <VFlex xs12 md4>
+        </VCol>
+        <VCol cols="12" md="4">
           <VSelect
             v-model="period"
             item-text="value"
@@ -25,27 +25,28 @@
             :items="periods"
             :rules="rules"
           />
-        </VFlex>
-        <VFlex xs12 md3 offset-md9>
+        </VCol>
+        <VCol cols="12" md="3" offset-md="9">
           <VBtn
             block
             color="primary"
             :loading="loading"
             :disabled="!valid"
             @click="generateChart()"
-          >Generate chart</VBtn>
-        </VFlex>
-      </VLayout>
+            >Generate chart</VBtn
+          >
+        </VCol>
+      </VRow>
     </VForm>
   </VContainer>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
   name: 'Home',
-  data () {
+  data() {
     return {
       options: [
         { value: 'Top albums', option: '1' },
@@ -69,33 +70,51 @@ export default {
       rules: [v => !!v || 'Value is required'],
 
       loading: false
-    }
+    };
   },
   methods: {
-    encodeParam (param) {
-      let encodedParam = JSON.stringify(param)
-      encodedParam = encodeURIComponent(encodedParam)
+    encodeParam(param) {
+      let encodedParam = JSON.stringify(param);
+      encodedParam = encodeURIComponent(encodedParam);
 
-      return encodedParam
+      return encodedParam;
     },
-    async generateChart () {
-      this.loading = true
+    handleLimit(option) {
+      return parseInt(this.option, 0) === option ? '5' : '1';
+    },
+    async generateChart() {
+      this.loading = true;
 
-      const { data } = await axios.get(
-        `.netlify/functions/getChartInfo?option=${this.option}&user=${this.user}&period=${this.period}`
-      )
+      const { user, period } = this;
+      const params = [
+        { limit: this.handleLimit(1), user, period },
+        { limit: this.handleLimit(2), user, period },
+        { limit: this.handleLimit(3), user, period }
+      ];
 
-      this.$router.push({
-        path: '/chart',
-        query: {
-          album: this.encodeParam(data.album),
-          artist: this.encodeParam(data.artist),
-          colors: this.encodeParam(data.colors),
-          option: this.encodeParam(data.option),
-          track: this.encodeParam(data.track)
-        }
-      })
+      const promises = [
+        axios.get('api/getAlbums', { params: params[0] }),
+        axios.get('api/getArtists', { params: params[1] }),
+        axios.get('api/getTracks', { params: params[2] })
+      ];
+
+      try {
+        let responses = await Promise.all(promises);
+        responses = responses.map(response => response.data);
+
+        this.$router.push({
+          path: '/chart',
+          query: {
+            album: this.encodeParam(responses[0]),
+            artist: this.encodeParam(responses[1]),
+            track: this.encodeParam(responses[2]),
+            option: this.encodeParam(this.option)
+          }
+        });
+      } catch (error) {
+        this.loading = false;
+      }
     }
   }
-}
+};
 </script>

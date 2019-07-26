@@ -1,10 +1,15 @@
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
 module.exports = {
+  configureWebpack: {
+    // plugins: [new BundleAnalyzerPlugin()]
+  },
   devServer: {
     proxy: {
-      '/.netlify': {
-        target: 'http://localhost:9000',
-        pathRewrite: { '^/.netlify/functions': '' }
+      '/api': {
+        target: 'http://localhost:3000/',
+        pathRewrite: { '^/api': '' }
       }
     }
   }
-}
+};
