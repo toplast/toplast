@@ -7,11 +7,12 @@
 </template>
 
 <script>
+import getImageColors from 'get-image-colors';
 import ChartHeader from '@/components/chart/Header.vue';
 import ChartBody from '@/components/chart/Body.vue';
 import ChartFooter from '@/components/chart/Footer.vue';
 import chartSample from '@/assets/chart.json';
-import { handleChart } from '@/assets/handleChart';
+import handleChart from '@/assets/handleChart';
 
 export default {
   name: 'Chart',
@@ -28,15 +29,15 @@ export default {
   },
   computed: {
     chart() {
-      const data = [this.albums, this.artists, this.tracks];
+      const data = [[...this.albums], [...this.artists], [...this.tracks]];
 
       return handleChart(this.option, data);
     }
   },
-  mounted() {
+  async mounted() {
     const query = this.$route.query || {};
 
-    if (Object.keys(query).length !== 5) {
+    if (Object.keys(query).length !== 4) {
       this.albums = chartSample.album;
       this.artists = chartSample.artist;
       this.tracks = chartSample.track;
@@ -47,9 +48,13 @@ export default {
       this.albums = this.decodeParam(query.album);
       this.artists = this.decodeParam(query.artist);
       this.tracks = this.decodeParam(query.track);
-
-      this.colors = this.decodeParam(query.colors);
       this.option = this.decodeParam(query.option);
+
+      if (this.chart.header) {
+        const palette = await getImageColors(this.chart.header.image);
+
+        this.colors = palette.map(color => color.hex());
+      }
     }
   },
   methods: {
