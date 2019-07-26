@@ -1,6 +1,6 @@
 <template>
   <VCard flat tile :color="colors[2]" height="275">
-    <VRow class="px-1 fill-height" align="center">
+    <VRow class="mx-1 fill-height" align="center">
       <VCol
         v-for="(item, i) in items"
         :key="i"
