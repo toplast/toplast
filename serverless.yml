@@ -22,7 +22,7 @@ functions:
       - http:
           path: getAlbums
           method: get
-          cors: true
+          # cors: true
 
   getArtists:
     handler: services/get-artists/handler.main
@@ -30,7 +30,7 @@ functions:
       - http:
           path: getArtists
           method: get
-          cors: true
+          # cors: true
 
   getTracks:
     handler: services/get-tracks/handler.main
@@ -38,4 +38,4 @@ functions:
       - http:
           path: getTracks
           method: get
-          cors: true
+          # cors: true
