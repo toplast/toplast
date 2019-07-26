@@ -93,9 +93,9 @@ export default {
       ];
 
       const promises = [
-        axios.get(`${process.env.API_ENDPOINT}/getAlbums`, { params: params[0] }),
-        axios.get(`${process.env.API_ENDPOINT}/getArtists`, { params: params[1] }),
-        axios.get(`${process.env.API_ENDPOINT}/getTracks`, { params: params[2] })
+        axios.get('https://api.toplast.net/getAlbums', { params: params[0] }),
+        axios.get('https://api.toplast.net/getArtists', { params: params[1] }),
+        axios.get('https://api.toplast.net/getTracks', { params: params[2] })
       ];
 
       try {
