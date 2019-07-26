@@ -4,16 +4,17 @@ provider:
   name: aws
   runtime: nodejs8.10
   memorySize: 2536
-  # iamRoleStatements:
-  #   - Effect: 'Allow'
-  #     Action:
-  #       - 's3:upload'
-  #     Resource: 'arn:aws:s3:::<BucketName>/*'
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 's3:upload'
+      Resource: 'arn:aws:s3:::toplast-images/*'
   environment: # Just for deployment purposes, in development use .env file
     LAST_FM_API_URL: 'https://ws.audioscrobbler.com/2.0/'
     LAST_FM_API_KEY: ''
     SPOTIFY_CLIENT_ID: ''
     SPOTIFY_CLIENT_SECRET: ''
+    CLIENT_URL: ''
 
 functions:
   getAlbums:
@@ -40,6 +41,14 @@ functions:
           method: get
           # cors: true
 
+  getImage:
+    handler: services/get-image/handler.main
+    events:
+      - http:
+          path: getImage
+          method: get
+          # cors: true
+
 package:
   individually: true
   exclude:
@@ -48,12 +57,11 @@ package:
 plugins:
   - serverless-offline
   - serverless-plugin-chrome
-
-custom:
-  chrome:
-    flags:
-      # - --window-size=1280,1696
-      - --hide-scrollbars
-      - --ignore-certificate-errors
-    # functions:
-    #   - screenshot-function
+# custom:
+#   chrome:
+#     flags:
+#       # - --window-size=1280,1696
+#       - --hide-scrollbars
+#       - --ignore-certificate-errors
+#     functions:
+#       - getImage
