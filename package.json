@@ -12,18 +12,21 @@
     "url": "https://github.com/castilh0s/toplast-api.git"
   },
   "devDependencies": {
-    "aws-sdk": "^2.498.0",
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-prettier": "^3.1.0",
     "prettier": "^1.18.2",
+    "puppeteer": "^1.19.0",
+    "serverless-apigw-binary": "0.4.4",
     "serverless-offline": "^5.8.0"
   },
   "dependencies": {
+    "aws-sdk": "^2.501.0",
     "axios": "^0.19.0",
     "dotenv": "^8.0.0",
+    "puppeteer-core": "^1.19.0",
     "spotify-web-api-node": "^4.0.0"
   }
 }
