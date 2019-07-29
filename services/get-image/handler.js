@@ -17,7 +17,7 @@ module.exports.main = async event => {
   }
 
   const s3 = new aws.S3({ apiVersion: '2006-03-01' });
-  const targetUrl = `${config.CLIENT_URL}?album=${params.albums}&artist=${params.artist}&track=${params.track}&option=${params.option}`;
+  const targetUrl = `${config.CLIENT_URL}?album=${params.album}&artist=${params.artist}&track=${params.track}&option=${params.option}`;
 
   let browser = null;
   try {
