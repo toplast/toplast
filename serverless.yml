@@ -39,6 +39,16 @@ functions:
       - http:
           path: getAlbums
           method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
 
   getArtists:
     handler: services/get-artists/handler.main
@@ -46,6 +56,16 @@ functions:
       - http:
           path: getArtists
           method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
 
   getTracks:
     handler: services/get-tracks/handler.main
@@ -53,6 +73,16 @@ functions:
       - http:
           path: getTracks
           method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
 
   getImage:
     handler: services/get-image/handler.main
@@ -62,3 +92,13 @@ functions:
       - http:
           path: getImage
           method: get
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: false
