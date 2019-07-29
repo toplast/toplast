@@ -102,13 +102,20 @@ export default {
         let responses = await Promise.all(promises);
         responses = responses.map(response => response.data);
 
-        this.$router.push({
-          path: '/chart',
-          query: {
+        const { data } = await axios.get('https://api.toplast.net/getImage', {
+          params: {
             album: this.encodeParam(responses[0]),
             artist: this.encodeParam(responses[1]),
             track: this.encodeParam(responses[2]),
-            option: this.encodeParam(this.option)
+            option: this.encodeParam(this.option),
+            user: this.user
+          }
+        });
+
+        this.$router.push({
+          path: '/chart',
+          query: {
+            image: this.encodeParam(data.url)
           }
         });
       } catch (error) {
