@@ -17,7 +17,7 @@ module.exports.main = async event => {
   }
 
   const s3 = new aws.S3({ apiVersion: '2006-03-01' });
-  const targetUrl = `${config.CLIENT_URL}?album=${params.album}&artist=${params.artist}&track=${params.track}&option=${params.option}`;
+  const targetUrl = `${config.CLIENT_URL}/chart?album=${params.album}&artist=${params.artist}&track=${params.track}&option=${params.option}`;
 
   let browser = null;
   try {
@@ -32,11 +32,11 @@ module.exports.main = async event => {
     await page.goto(targetUrl);
     await page.setViewport({ width: 750, height: 750 });
 
-    const imagePath = `screenshot-${new Date().getTime()}.png`;
+    const imagePath = `${params.user}/screenshot-${new Date().getTime()}.png`;
 
-    const buffer = await page.screenshot({ path: `/tmp/${imagePath}` });
+    const buffer = await page.screenshot();
     const { Location } = await s3
-      .putObject({
+      .upload({
         ACL: 'public-read',
         Body: buffer,
         Bucket: BUCKET,
@@ -47,7 +47,7 @@ module.exports.main = async event => {
 
     const response = handleFunctionReturn({
       statusCode: 200,
-      body: { Location }
+      body: { url: Location }
     });
 
     return response;

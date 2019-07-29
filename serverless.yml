@@ -57,7 +57,7 @@ functions:
   getImage:
     handler: services/get-image/handler.main
     memorySize: 2536
-    timeout: 10
+    timeout: 15
     events:
       - http:
           path: getImage
