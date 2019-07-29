@@ -9,7 +9,9 @@
             class="elevation-5 image"
             :style="item.round ? 'border-radius: 100%' : ''"
           />
-          <div class="pt-1 text-truncate body-2">{{ item.title }}</div>
+          <div class="pt-1 text-truncate body-1 font-weight-bold">
+            {{ item.title }}
+          </div>
           <div v-if="item.subtitle" class="pt-1 text-truncate body-1">
             {{ item.subtitle }}
           </div>

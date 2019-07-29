@@ -6,7 +6,7 @@
       class="elevation-2 mr-3 image"
       :style="data.round ? 'border-radius: 100%' : ''"
     />
-    <div :style="`color: ${textColor};`">
+    <div :style="`color: ${textColor}; max-width: 259px`">
       <div class="subheading font-weight-regular text-truncate">
         {{ data.sectionName }}
       </div>
@@ -35,8 +35,8 @@ export default {
   justify-content: center;
 }
 .image {
-  width: 78px;
-  height: 78px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
 }
 </style>
