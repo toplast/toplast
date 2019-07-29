@@ -15,7 +15,7 @@ import chartSample from '@/assets/chart.json';
 import handleChart from '@/assets/handleChart';
 
 export default {
-  name: 'Chart',
+  name: 'ChartGenerator',
   components: { ChartHeader, ChartBody, ChartFooter },
   data() {
     return {
