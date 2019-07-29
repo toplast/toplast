@@ -7,6 +7,8 @@ const { validateTopLastParams } = require('../../lib/validators');
 const BUCKET = 'toplast-images';
 
 module.exports.main = async event => {
+  console.log(JSON.stringify(event));
+
   const params = event.queryStringParameters;
 
   if (!validateTopLastParams(params)) {
