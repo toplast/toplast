@@ -36,6 +36,16 @@
             >Generate chart</VBtn
           >
         </VCol>
+        <!-- <VCol cols="12" md="3" offset-md="9">
+          <VBtn
+            block
+            color="primary"
+            :loading="loading"
+            :disabled="!valid"
+            @click="generateChart(true)"
+            >Dev chart</VBtn
+          >
+        </VCol> -->
       </VRow>
     </VForm>
   </VContainer>
@@ -82,7 +92,7 @@ export default {
     handleLimit(option) {
       return parseInt(this.option, 0) === option ? '5' : '1';
     },
-    async generateChart() {
+    async generateChart(isDevelopment) {
       this.loading = true;
 
       const { user, period } = this;
@@ -102,22 +112,34 @@ export default {
         let responses = await Promise.all(promises);
         responses = responses.map(response => response.data);
 
-        const { data } = await axios.get('https://api.toplast.net/getImage', {
-          params: {
-            album: this.encodeParam(responses[0]),
-            artist: this.encodeParam(responses[1]),
-            track: this.encodeParam(responses[2]),
-            option: this.encodeParam(this.option),
-            user: this.user
-          }
-        });
+        if (isDevelopment) {
+          this.$router.push({
+            path: '/chartGenerator',
+            query: {
+              album: this.encodeParam(responses[0]),
+              artist: this.encodeParam(responses[1]),
+              track: this.encodeParam(responses[2]),
+              option: this.encodeParam(this.option)
+            }
+          });
+        } else {
+          const { data } = await axios.get('https://api.toplast.net/getImage', {
+            params: {
+              album: this.encodeParam(responses[0]),
+              artist: this.encodeParam(responses[1]),
+              track: this.encodeParam(responses[2]),
+              option: this.encodeParam(this.option),
+              user: this.user
+            }
+          });
 
-        this.$router.push({
-          path: '/chart',
-          query: {
-            image: this.encodeParam(data.url)
-          }
-        });
+          this.$router.push({
+            path: '/chart',
+            query: {
+              image: this.encodeParam(data.url)
+            }
+          });
+        }
       } catch (error) {
         this.loading = false;
       }

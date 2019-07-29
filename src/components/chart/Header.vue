@@ -1,11 +1,13 @@
 <template>
   <VCard flat tile :color="colors[0]" height="325">
     <VRow class="mx-3 fill-height" align="center">
-      <VCol cols="8" :style="`color: ${textColor};`">
-        <div class="headline font-weight-light">{{ data.sectionName }}</div>
-        <div class="display-2 font-weight-regular">{{ data.title }}</div>
-        <div v-if="data.subtitle" class="headline font-weight-regular">
-          {{ data.subtitle }}
+      <VCol cols="8">
+        <div :style="`color: ${textColor};`">
+          <div class="headline font-weight-light">{{ data.sectionName }}</div>
+          <div class="display-2 font-weight-regular">{{ data.title }}</div>
+          <div v-if="data.subtitle" class="headline font-weight-regular">
+            {{ data.subtitle }}
+          </div>
         </div>
       </VCol>
       <VCol class="xs-4 text-center">
