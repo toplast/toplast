@@ -1,22 +1,18 @@
 <template>
   <VCard flat tile :color="colors[2]" height="275">
     <VRow class="mx-1 fill-height" align="center">
-      <VCol
-        v-for="(item, i) in items"
-        :key="i"
-        class="px-1 text-center"
-        cols="3"
-        :style="`color: ${textColor};`"
-      >
-        <img
-          :src="item.image"
-          :alt="item.title"
-          class="elevation-5 image"
-          :style="item.round ? 'border-radius: 100%' : ''"
-        />
-        <div class="pt-1 text-truncate body-2">{{ item.title }}</div>
-        <div v-if="item.subtitle" class="pt-1 text-truncate body-1">
-          {{ item.subtitle }}
+      <VCol v-for="(item, i) in items" :key="i" class="px-1 text-center" cols="3">
+        <div :style="`color: ${textColor};`">
+          <img
+            :src="item.image"
+            :alt="item.title"
+            class="elevation-5 image"
+            :style="item.round ? 'border-radius: 100%' : ''"
+          />
+          <div class="pt-1 text-truncate body-2">{{ item.title }}</div>
+          <div v-if="item.subtitle" class="pt-1 text-truncate body-1">
+            {{ item.subtitle }}
+          </div>
         </div>
       </VCol>
     </VRow>
