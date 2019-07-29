@@ -14,9 +14,12 @@ export default new Router({
       component: Home
     },
     {
-      path: '/chart',
-      name: 'chart',
-      component: () => import(/* webpackChunkName: "chart" */ './views/Chart.vue')
+      path: '/chartGenerator',
+      name: 'chartGenerator',
+      component: () =>
+        import(
+          /* webpackChunkName: "chart-generator" */ './views/ChartGenerator.vue'
+        )
     }
   ]
 });
