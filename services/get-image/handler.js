@@ -1,10 +1,10 @@
-const puppeteer = require('puppeteer-core');
-const AWS = require('aws-sdk');
+const aws = require('aws-sdk');
+const chromium = require('chrome-aws-lambda');
 const config = require('../../lib/config');
 const { handleFunctionReturn } = require('../../lib/handlers');
 const { validateTopLastParams } = require('../../lib/validators');
 
-const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
+const BUCKET = 'toplast-images';
 
 module.exports.main = async event => {
   const params = event.queryStringParameters;
@@ -16,30 +16,46 @@ module.exports.main = async event => {
     });
   }
 
-  const browser = await puppeteer.connect({
-    browserURL: 'http://127.0.0.1:9222',
-    defaultViewport: { height: 750, width: 750 }
-  });
+  const s3 = new aws.S3({ apiVersion: '2006-03-01' });
   const targetUrl = `${config.CLIENT_URL}?album=${params.albums}&artist=${params.artist}&track=${params.track}&option=${params.option}`;
 
+  let browser = null;
   try {
+    browser = await chromium.puppeteer.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath,
+      headless: chromium.headless
+    });
+
     const page = await browser.newPage();
-    const imagePath = `/tmp/screenshot-${new Date().getTime()}.png`;
-
     await page.goto(targetUrl);
-    const buffer = await page.screenshot({ path: imagePath });
-    await browser.close();
+    await page.setViewport({ width: 750, height: 750 });
 
-    await s3.putObject({
-      Bucket: 'toplast-images',
-      key: imagePath,
-      Body: buffer,
-      ContentType: 'image/png'
-    }).promise;
-    // const {  }
+    const imagePath = `screenshot-${new Date().getTime()}.png`;
 
-    return handleFunctionReturn({ statusCode: 200, body: { url: 'veja no s3' } });
-  } catch (e) {
-    return handleFunctionReturn({ statusCode: 500, body: e });
+    const buffer = await page.screenshot({ path: `/tmp/${imagePath}` });
+    const { Location } = await s3
+      .putObject({
+        ACL: 'public-read',
+        Body: buffer,
+        Bucket: BUCKET,
+        ContentType: 'image/png',
+        Key: imagePath
+      })
+      .promise();
+
+    const response = handleFunctionReturn({
+      statusCode: 200,
+      body: { Location }
+    });
+
+    return response;
+  } catch (error) {
+    const response = handleFunctionReturn({ statusCode: 500, body: error });
+
+    return response;
+  } finally {
+    if (browser !== null) await browser.close();
   }
 };
