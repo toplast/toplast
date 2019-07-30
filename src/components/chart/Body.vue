@@ -33,18 +33,22 @@ export default {
   },
   computed: {
     textColor() {
-      if (this.colors.length === 0) return 'rgba(0, 0, 0, 0.87)';
+      if (this.colors.length === 0) return '#000';
 
-      const color = getBestContrastColor('#f4f4f4', this.colors);
+      const backgroundColor = this.colors[2];
+      let color = getBestContrastColor(backgroundColor, this.colors);
 
-      if (this.isReadable(color, '#f4f4f4')) return color;
-      return getBestContrastColor('#f4f4f4', ['rgba(0, 0, 0, 0.87)', '#FFFFFF']);
+      if (!this.isReadable(color, backgroundColor)) {
+        color = getBestContrastColor(backgroundColor, ['#000', '#FFF']);
+      }
+
+      return color;
     }
   },
   methods: {
     isReadable(color1, color2) {
       const contrastRatio = getContrastRatio(color1, color2);
-      return contrastRatio > 10;
+      return contrastRatio > 2;
     }
   }
 };
