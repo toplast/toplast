@@ -5,7 +5,7 @@
         <div class="display-1">TopLast</div>
         <div class="title font-weight-light">A Last.fm chart generator</div>
       </VCol>
-      <VCol cols="12" md="4" offset-md="4">
+      <VCol cols="12" sm="6" md="4" offset-sm="3" offset-md="4">
         <VCard>
           <VCardText>
             <VForm v-model="valid">
