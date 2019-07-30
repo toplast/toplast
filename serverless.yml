@@ -26,15 +26,11 @@ package:
 plugins:
   - serverless-offline
   - serverless-apigw-binary
-  - serverless-plugin-epsagon
 
 custom:
   apigwBinary:
     types:
       - '*/*'
-  epsagon:
-    token: 754b6b34-eee7-4fa4-96c1-c662af19e5e1
-    appName: TopLast
 
 functions:
   getAlbums:

@@ -28,7 +28,6 @@
     "chrome-aws-lambda": "^1.19.0",
     "dotenv": "^8.0.0",
     "puppeteer-core": "^1.19.0",
-    "serverless-plugin-epsagon": "^1.6.0",
     "spotify-web-api-node": "^4.0.0"
   }
 }
