@@ -7,6 +7,8 @@ const {
 } = require('../../lib/handlers');
 
 module.exports.main = async event => {
+  console.log(JSON.stringify(event));
+
   const params = handleLastFmParams(event.queryStringParameters);
   if (!validateLastFmParams(params)) {
     return handleFunctionReturn({
