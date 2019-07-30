@@ -1,53 +1,68 @@
 <template>
   <VContainer class="text-center">
-    <div class="display-1">TopLast</div>
-    <VForm v-model="valid">
-      <VRow>
-        <VCol cols="12" md="4">
-          <VTextField v-model="user" label="Last.fm username" :rules="rules" />
-        </VCol>
-        <VCol cols="12" md="4">
-          <VSelect
-            v-model="option"
-            item-text="value"
-            item-value="option"
-            label="Chart option"
-            :items="options"
-            :rules="rules"
-          />
-        </VCol>
-        <VCol cols="12" md="4">
-          <VSelect
-            v-model="period"
-            item-text="value"
-            item-value="option"
-            label="Period"
-            :items="periods"
-            :rules="rules"
-          />
-        </VCol>
-        <VCol cols="12" md="3" offset-md="9">
-          <VBtn
-            block
-            color="primary"
-            :loading="loading"
-            :disabled="!valid"
-            @click="generateChart()"
-            >Generate chart</VBtn
-          >
-        </VCol>
-        <!-- <VCol cols="12" md="3" offset-md="9">
-          <VBtn
-            block
-            color="primary"
-            :loading="loading"
-            :disabled="!valid"
-            @click="generateChart(true)"
-            >Dev chart</VBtn
-          >
-        </VCol> -->
-      </VRow>
-    </VForm>
+    <VRow>
+      <VCol cols="12">
+        <div class="display-1">TopLast</div>
+        <div class="title font-weight-light">A Last.fm chart generator</div>
+      </VCol>
+      <VCol cols="12" md="4" offset-md="4">
+        <VCard>
+          <VCardText>
+            <VForm v-model="valid">
+              <VRow>
+                <VCol cols="12">
+                  <VTextField
+                    v-model="user"
+                    label="Last.fm username"
+                    :rules="rules"
+                  />
+                </VCol>
+                <VCol cols="12">
+                  <VSelect
+                    v-model="option"
+                    item-text="value"
+                    item-value="option"
+                    label="Chart option"
+                    :items="options"
+                    :rules="rules"
+                  />
+                </VCol>
+                <VCol cols="12">
+                  <VSelect
+                    v-model="period"
+                    item-text="value"
+                    item-value="option"
+                    label="Period"
+                    :items="periods"
+                    :rules="rules"
+                  />
+                </VCol>
+                <VCol cols="12">
+                  <VBtn
+                    block
+                    color="primary"
+                    :loading="loading"
+                    :disabled="!valid"
+                    @click="generateChart()"
+                    >Generate chart</VBtn
+                  >
+                </VCol>
+                <!-- <VCol cols="12">
+                  <VBtn
+                    block
+                    color="primary"
+                    :loading="loading"
+                    :disabled="!valid"
+                    @click="generateChart(true)"
+                    >Dev chart</VBtn
+                  >
+                </VCol> -->
+              </VRow>
+            </VForm>
+          </VCardText>
+        </VCard>
+      </VCol>
+    </VRow>
   </VContainer>
 </template>
 
@@ -73,8 +88,8 @@ export default {
       ],
 
       user: undefined,
-      option: undefined,
-      period: undefined,
+      option: '1',
+      period: '7day',
 
       valid: false,
       rules: [v => !!v || 'Value is required'],
@@ -89,9 +104,21 @@ export default {
 
       return encodedParam;
     },
+    goToChartGeneratorPage(responses) {
+      this.$router.push({
+        path: '/chartGenerator',
+        query: {
+          album: this.encodeParam(responses[0]),
+          artist: this.encodeParam(responses[1]),
+          track: this.encodeParam(responses[2]),
+          option: this.encodeParam(this.option)
+        }
+      });
+    },
     handleLimit(option) {
       return parseInt(this.option, 0) === option ? '5' : '1';
     },
+
     async generateChart(isDevelopment) {
       this.loading = true;
 
@@ -112,37 +139,29 @@ export default {
         let responses = await Promise.all(promises);
         responses = responses.map(response => response.data);
 
-        if (isDevelopment) {
-          this.$router.push({
-            path: '/chartGenerator',
-            query: {
-              album: this.encodeParam(responses[0]),
-              artist: this.encodeParam(responses[1]),
-              track: this.encodeParam(responses[2]),
-              option: this.encodeParam(this.option)
-            }
-          });
-        } else {
-          const { data } = await axios.get('https://api.toplast.net/getImage', {
-            params: {
-              album: this.encodeParam(responses[0]),
-              artist: this.encodeParam(responses[1]),
-              track: this.encodeParam(responses[2]),
-              option: this.encodeParam(this.option),
-              user: this.user
-            }
-          });
-
-          this.$router.push({
-            path: '/chart',
-            query: {
-              image: this.encodeParam(data.url)
-            }
-          });
-        }
+        if (isDevelopment) this.goToChartGeneratorPage(responses);
+        else await this.goToChartImagePage(responses);
       } catch (error) {
         this.loading = false;
       }
+    },
+    async goToChartImagePage(responses) {
+      const { data } = await axios.get('https://api.toplast.net/getImage', {
+        params: {
+          album: this.encodeParam(responses[0]),
+          artist: this.encodeParam(responses[1]),
+          track: this.encodeParam(responses[2]),
+          option: this.encodeParam(this.option),
+          user: this.user
+        }
+      });
+
+      this.$router.push({
+        path: '/chart',
+        query: {
+          image: this.encodeParam(data.url)
+        }
+      });
     }
   }
 };
