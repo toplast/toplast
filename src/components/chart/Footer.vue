@@ -9,7 +9,8 @@
 </template>
 
 <script>
-import bestContrast from 'get-best-contrast-color';
+import getContrastRatio from 'get-contrast-ratio';
+import getBestContrastColor from 'get-best-contrast-color';
 import Item from '@/components/chart/footer/Item.vue';
 
 export default {
@@ -21,8 +22,18 @@ export default {
   },
   computed: {
     textColor() {
-      if (this.colors.length === 0) return '#000';
-      return bestContrast('#f4f4f4', this.colors);
+      if (this.colors.length === 0) return 'rgba(0, 0, 0, 0.87)';
+
+      const color = getBestContrastColor('#f4f4f4', this.colors);
+
+      if (this.isReadable(color, '#f4f4f4')) return color;
+      return getBestContrastColor('#f4f4f4', ['rgba(0, 0, 0, 0.87)', '#FFFFFF']);
+    }
+  },
+  methods: {
+    isReadable(color1, color2) {
+      const contrastRatio = getContrastRatio(color1, color2);
+      return contrastRatio > 10;
     }
   }
 };
