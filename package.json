@@ -20,7 +20,8 @@
     "prettier": "^1.18.2",
     "puppeteer": "^1.19.0",
     "serverless-apigw-binary": "0.4.4",
-    "serverless-offline": "^5.8.0"
+    "serverless-offline": "^5.8.0",
+    "serverless-plugin-epsagon": "^1.6.0"
   },
   "dependencies": {
     "aws-sdk": "^2.501.0",
