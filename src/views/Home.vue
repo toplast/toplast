@@ -104,9 +104,21 @@ export default {
 
       return encodedParam;
     },
+    goToChartGeneratorPage(responses) {
+      this.$router.push({
+        path: '/chartGenerator',
+        query: {
+          album: this.encodeParam(responses[0]),
+          artist: this.encodeParam(responses[1]),
+          track: this.encodeParam(responses[2]),
+          option: this.encodeParam(this.option)
+        }
+      });
+    },
     handleLimit(option) {
       return parseInt(this.option, 0) === option ? '5' : '1';
     },
+
     async generateChart(isDevelopment) {
       this.loading = true;
 
@@ -127,37 +139,29 @@ export default {
         let responses = await Promise.all(promises);
         responses = responses.map(response => response.data);
 
-        if (isDevelopment) {
-          this.$router.push({
-            path: '/chartGenerator',
-            query: {
-              album: this.encodeParam(responses[0]),
-              artist: this.encodeParam(responses[1]),
-              track: this.encodeParam(responses[2]),
-              option: this.encodeParam(this.option)
-            }
-          });
-        } else {
-          const { data } = await axios.get('https://api.toplast.net/getImage', {
-            params: {
-              album: this.encodeParam(responses[0]),
-              artist: this.encodeParam(responses[1]),
-              track: this.encodeParam(responses[2]),
-              option: this.encodeParam(this.option),
-              user: this.user
-            }
-          });
-
-          this.$router.push({
-            path: '/chart',
-            query: {
-              image: this.encodeParam(data.url)
-            }
-          });
-        }
+        if (isDevelopment) this.goToChartGeneratorPage(responses);
+        else await this.goToChartImagePage(responses);
       } catch (error) {
         this.loading = false;
       }
+    },
+    async goToChartImagePage(responses) {
+      const { data } = await axios.get('https://api.toplast.net/getImage', {
+        params: {
+          album: this.encodeParam(responses[0]),
+          artist: this.encodeParam(responses[1]),
+          track: this.encodeParam(responses[2]),
+          option: this.encodeParam(this.option),
+          user: this.user
+        }
+      });
+
+      this.$router.push({
+        path: '/chart',
+        query: {
+          image: this.encodeParam(data.url)
+        }
+      });
     }
   }
 };
