@@ -53,8 +53,7 @@ functions:
 
   getArtists:
     handler: services/get-artists/handler.main
-    memorySize: 3008
-    timeout: 30
+    timeout: 15
     events:
       - http:
           path: getArtists
