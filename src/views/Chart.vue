@@ -1,5 +1,7 @@
 <template>
-  <VImg :src="chartImage" alt="Chart" max-height="750" max-width="750" />
+  <div>
+    <img :src="chartImage" alt="Chart" style="width: 100%; max-width: 750px;" />
+  </div>
 </template>
 
 <script>
