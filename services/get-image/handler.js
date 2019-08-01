@@ -7,9 +7,13 @@ const { getBrowser, getPage } = require('../../lib/puppeteer-services');
 const BUCKET = 'toplast-images';
 
 const optionToString = option => {
-  if (option === '1') return 'topAlbums';
-  if (option === '2') return 'topArtists';
-  return 'topTracks';
+  const parsedOption = parseInt(option, 0);
+  let string = 'tracks';
+
+  if (parsedOption === 1) string = 'albums';
+  if (parsedOption === 2) string = 'artists';
+
+  return string;
 };
 
 module.exports.main = async event => {
@@ -33,7 +37,7 @@ module.exports.main = async event => {
     const page = await getPage(browser, targetUrl, { width: 750, height: 750 });
     const imagePath = `${params.user}/${optionToString(params.option)}/${
       params.period
-    }/screenshot-${new Date().getTime()}.png`;
+    }/${new Date().toLocaleDateString()}.png`;
     const buffer = await page.screenshot();
     const s3ImageUrl = await sendImageToS3(buffer, imagePath, BUCKET);
 
