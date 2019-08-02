@@ -37,10 +37,16 @@ module.exports.main = async event => {
   try {
     browser = await getBrowser();
 
+    const date = new Date();
+    const datetime = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}-${date
+      .toLocaleTimeString()
+      .split(':')
+      .join('-')}`;
+
     const page = await getPage(browser, targetUrl, { width: 750, height: 750 });
     const imagePath = `${params.user}/${optionToString(params.option)}/${
       params.period
-    }/${new Date().toLocaleDateString()}.png`;
+    }/${datetime}.png`;
     const buffer = await page.screenshot();
     const s3ImageUrl = await sendImageToS3(buffer, imagePath, BUCKET);
 
