@@ -152,7 +152,8 @@ export default {
           artist: this.encodeParam(responses[1]),
           track: this.encodeParam(responses[2]),
           option: this.encodeParam(this.option),
-          user: this.user
+          user: this.user,
+          period: this.period
         }
       });
 
