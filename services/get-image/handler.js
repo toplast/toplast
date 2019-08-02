@@ -7,8 +7,11 @@ const { getBrowser, getPage } = require('../../lib/puppeteer-services');
 const BUCKET = 'toplast-images';
 
 const optionToString = option => {
-  const parsedOption = parseInt(option, 0);
   let string = 'tracks';
+
+  let parsedOption = decodeURIComponent(option);
+  parsedOption = JSON.parse(parsedOption);
+  parsedOption = parseInt(parsedOption, 0);
 
   if (parsedOption === 1) string = 'albums';
   if (parsedOption === 2) string = 'artists';
