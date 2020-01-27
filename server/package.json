@@ -1,33 +1,33 @@
 {
-  "name": "toplast-api",
+  "name": "toplast-server",
   "version": "1.0.0",
   "description": "Serverless API for TopLast",
   "scripts": {
-    "start": "serverless offline start"
+    "start": "sls offline start --post 8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Henrique de Castilhos <henriquedecastilhos@gmail.com> (https://twitter.com/castilh0s)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/castilh0s/toplast-api.git"
-  },
-  "devDependencies": {
-    "eslint": "^6.1.0",
-    "eslint-config-airbnb-base": "^13.2.0",
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-prettier": "^3.1.0",
-    "prettier": "^1.18.2",
-    "puppeteer": "^1.19.0",
-    "serverless-apigw-binary": "0.4.4",
-    "serverless-offline": "^5.8.0"
+    "url": "https://github.com/castilh0s/toplast.git"
   },
   "dependencies": {
-    "aws-sdk": "^2.503.0",
-    "axios": "^0.19.0",
-    "cheerio": "^1.0.0-rc.3",
-    "chrome-aws-lambda": "^1.19.0",
-    "dotenv": "^8.0.0",
-    "puppeteer-core": "^1.19.0"
+    "source-map-support": "^0.5.10"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.17",
+    "@types/node": "^10.12.18",
+    "aws-lambda": "^1.0.5",
+    "axios": "^0.19.2",
+    "fork-ts-checker-webpack-plugin": "^3.0.1",
+    "nest-tslint-rules": "^2.0.0",
+    "serverless-offline": "^5.12.1",
+    "serverless-webpack": "^5.2.0",
+    "ts-loader": "^5.3.3",
+    "tslint": "^6.0.0",
+    "typescript": "^3.2.4",
+    "webpack": "^4.29.0",
+    "webpack-node-externals": "^1.7.2"
   }
 }
