@@ -1,8 +1,0 @@
-# Redirect domain aliases to primary domain
-https://toplast.hcastilhos.com/* https://toplast.net/:splat 301!
-
-# Redirect default Netlify subdomain to primary domain
-https://toplast.netlify.com/* https://toplast.net/:splat 301!
-
-# Netlify settings for single-page application
-/*    /index.html   200
