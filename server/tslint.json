@@ -1,0 +1,15 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "nest-tslint-rules"
+  ],
+  "rules": {
+    "indent": {
+      "options": [
+        "spaces"
+      ]
+    },
+    "last-line": false,
+    "no-console": false
+  }
+}
