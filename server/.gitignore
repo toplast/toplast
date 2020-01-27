@@ -1,3 +1,4 @@
+### Node ###
 # Logs
 logs
 *.log
@@ -36,7 +37,6 @@ bower_components
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
-.build/
 
 # Dependency directories
 node_modules/
@@ -76,8 +76,23 @@ typings/
 # nuxt.js build output
 .nuxt
 
+# rollup.js default build output
+dist/
+
+# Uncomment the public line if your project uses Gatsby
+# https://nextjs.org/blog/next-9-1#public-directory-support
+# https://create-react-app.dev/docs/using-the-public-folder/#docsNav
+# public
+
+# Storybook build outputs
+.out
+.storybook-out
+
 # vuepress build output
 .vuepress/dist
+
+# Webpack directories
+.webpack
 
 # Serverless directories
 .serverless/
@@ -87,3 +102,11 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# Temporary folders
+tmp/
+temp/
+
+### Serverless ###
+# Ignore build directory
+.serverless
