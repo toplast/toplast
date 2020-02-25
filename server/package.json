@@ -21,6 +21,7 @@
     "source-map-support": "^0.5.10"
   },
   "devDependencies": {
+    "@toplast/lastfm": "^0.0.7",
     "@types/aws-lambda": "^8.10.17",
     "@types/node": "^10.12.18",
     "aws-lambda": "^1.0.5",
