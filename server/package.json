@@ -1,16 +1,21 @@
 {
-  "name": "toplast-server",
-  "version": "1.0.0",
+  "name": "@toplast/server",
+  "version": "0.2.0",
   "description": "Serverless API for TopLast",
-  "scripts": {
-    "start": "sls offline start --post 8080",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Henrique de Castilhos <henriquedecastilhos@gmail.com> (https://twitter.com/castilh0s)",
+  "homepage": "https://toplast.net",
   "license": "MIT",
+  "author": {
+    "email": "henriquedecastilhos@gmail.com",
+    "name": "Henrique de Castilhos",
+    "url": "https://github.com/castilh0s"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/castilh0s/toplast.git"
+  },
+  "scripts": {
+    "start": "sls offline start --post 8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "source-map-support": "^0.5.10"
