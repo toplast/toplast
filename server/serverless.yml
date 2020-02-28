@@ -1,107 +1,51 @@
-service: toplast-api
+service:
+  name: toplast-api
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
 
 provider:
   name: aws
-  runtime: nodejs8.10
-  iamRoleStatements:
-    - Effect: 'Allow'
-      Action:
-        - 's3:PutObject'
-        - 's3:PutObjectAcl'
-      Resource:
-        - 'arn:aws:s3:::toplast-images'
-        - 'arn:aws:s3:::toplast-images/*'
-  environment: # Just for deployment purposes, in development use .env file
-    LAST_FM_API_URL: 'https://ws.audioscrobbler.com/2.0/'
-    LAST_FM_API_KEY: ''
-    SPOTIFY_CLIENT_ID: ''
-    SPOTIFY_CLIENT_SECRET: ''
-    CLIENT_URL: ''
-
-package:
-  individually: true
-  exclude:
-    - node_modules/puppeteer/.local-chromium/**
-
-plugins:
-  - serverless-offline
-  - serverless-apigw-binary
-
-custom:
-  apigwBinary:
-    types:
-      - '*/*'
+  runtime: nodejs12.x
+  apiGateway:
+    minimumCompressionSize: 1024
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+    LAST_FM_API_URL: "https://ws.audioscrobbler.com/2.0/"
+    LAST_FM_API_KEY: ""
+    SPOTIFY_CLIENT_ID: ""
+    SPOTIFY_CLIENT_SECRET: ""
+    CLIENT_URL: ""
 
 functions:
   getAlbums:
-    handler: services/get-albums/handler.main
-    timeout: 10
+    handler: functions/getAlbums/index.handler
     events:
       - http:
+          method: get
           path: getAlbums
-          method: get
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
-            allowCredentials: false
-
-  getArtists:
-    handler: services/get-artists/handler.main
-    timeout: 15
-    events:
-      - http:
-          path: getArtists
-          method: get
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
-            allowCredentials: false
-
-  getTracks:
-    handler: services/get-tracks/handler.main
-    timeout: 15
-    events:
-      - http:
-          path: getTracks
-          method: get
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
-            allowCredentials: false
-
-  getImage:
-    handler: services/get-image/handler.main
-    memorySize: 2536
-    timeout: 15
-    events:
-      - http:
-          path: getImage
-          method: get
-          cors:
-            origin: '*'
-            headers:
-              - Content-Type
-              - X-Amz-Date
-              - Authorization
-              - X-Api-Key
-              - X-Amz-Security-Token
-              - X-Amz-User-Agent
-            allowCredentials: false
+  # getArtists:
+  #   handler: services/get-artists/handler.main
+  #   events:
+  #     - http:
+  #         method: get
+  #         path: getArtists
+  # getTracks:
+  #   handler: services/get-tracks/handler.main
+  #   timeout: 15
+  #   events:
+  #     - http:
+  #         method: get
+  #         path: getTracks
+  # getImage:
+  #   handler: services/get-image/handler.main
+  #   events:
+  #     - http:
+  #         method: get
+  #         path: getImage
