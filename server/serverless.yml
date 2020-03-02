@@ -30,12 +30,12 @@ functions:
       - http:
           method: get
           path: getAlbums
-  # getArtists:
-  #   handler: services/get-artists/handler.main
-  #   events:
-  #     - http:
-  #         method: get
-  #         path: getArtists
+  getArtists:
+    handler: functions/getArtists/index.handler
+    events:
+      - http:
+          method: get
+          path: getArtists
   # getTracks:
   #   handler: services/get-tracks/handler.main
   #   timeout: 15
