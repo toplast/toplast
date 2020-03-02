@@ -1,30 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/ban-ts-ignore */
-import LastFm from "@toplast/lastfm";
+import albums from "../../fixtures/albums";
 import { handler } from "../../../functions/getAlbums";
-import topAlbums from "../../fixtures/topAlbums";
 
-jest.mock("@toplast/lastfm");
+jest.mock("../../../functions/getAlbums/helper/", () => ({
+  getAlbums: jest
+    .fn()
+    .mockImplementationOnce(() => Promise.resolve(albums))
+    .mockImplementationOnce(() => Promise.reject({ message: "Some error" })),
+}));
 
 describe("Get albums test", () => {
-  beforeAll(() => {
-    // @ts-ignore
-    LastFm.mockImplementation(() => {
-      return {
-        user: {
-          getTopAlbums: (): any => topAlbums,
-        },
-      };
-    });
-  });
-
-  beforeEach(() => {
-    // @ts-ignore
-    LastFm.mockClear();
-  });
-
-  it("Should return error if user parameter is blank", async () => {
+  it("Should return bad request if user parameter is blank", async () => {
     // @ts-ignore
     const response = await handler({
       queryStringParameters: { user: "", limit: "5", period: "7day" },
@@ -36,7 +24,7 @@ describe("Get albums test", () => {
     });
   });
 
-  it("Should return error if limit parameter is blank", async () => {
+  it("Should return bad request if limit parameter is blank", async () => {
     // @ts-ignore
     const response = await handler({
       queryStringParameters: { user: "castilh0s", limit: "", period: "7day" },
@@ -48,7 +36,7 @@ describe("Get albums test", () => {
     });
   });
 
-  it("Should return error if period parameter is blank", async () => {
+  it("Should return bad request if period parameter is blank", async () => {
     // @ts-ignore
     const response = await handler({
       queryStringParameters: { user: "castilh0s", limit: "5", period: "" },
@@ -76,5 +64,17 @@ describe("Get albums test", () => {
         playcount: "675",
       },
     ]);
+  });
+
+  it("Should return error with status code 500", async () => {
+    // @ts-ignore
+    const response = await handler({
+      queryStringParameters: { user: "castilh0s", limit: "1", period: "7day" },
+    });
+
+    expect(response.statusCode).toEqual(500);
+    expect(JSON.parse(response.body)).toEqual({
+      message: "Some error",
+    });
   });
 });
