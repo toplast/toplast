@@ -17,11 +17,7 @@ provider:
     minimumCompressionSize: 1024
   environment:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
-    LAST_FM_API_URL: "https://ws.audioscrobbler.com/2.0/"
-    LAST_FM_API_KEY: ""
-    SPOTIFY_CLIENT_ID: ""
-    SPOTIFY_CLIENT_SECRET: ""
-    CLIENT_URL: ""
+    # LAST_FM_API_KEY: ""
 
 functions:
   getAlbums:
@@ -36,13 +32,12 @@ functions:
       - http:
           method: get
           path: getArtists
-  # getTracks:
-  #   handler: services/get-tracks/handler.main
-  #   timeout: 15
-  #   events:
-  #     - http:
-  #         method: get
-  #         path: getTracks
+  getTracks:
+    handler: functions/getTracks/index.handler
+    events:
+      - http:
+          method: get
+          path: getTracks
   # getImage:
   #   handler: services/get-image/handler.main
   #   events:
