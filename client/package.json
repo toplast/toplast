@@ -1,6 +1,18 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "@toplast/client",
+  "version": "0.2.0",
+  "description": "Client for TopLast",
+  "homepage": "https://toplast.net",
+  "license": "MIT",
+  "author": {
+    "email": "henriquedecastilhos@gmail.com",
+    "name": "Henrique de Castilhos",
+    "url": "https://github.com/castilh0s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/castilh0s/toplast.git"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
