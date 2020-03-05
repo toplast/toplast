@@ -1,26 +1,50 @@
-import "./App.css";
-import logo from "./logo.svg";
+import {
+  createMuiTheme,
+  CssBaseline,
+  ThemeProvider,
+  useMediaQuery,
+} from "@material-ui/core";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { HomePage } from "./pages/Home/Home";
+import { Main } from "./components/Main";
 import React from "react";
 
-function App(): JSX.Element {
+const MainWrapper: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Main>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+      </Switch>
+    </Main>
   );
-}
+};
 
-export default App;
+export const App: React.FC = () => {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: prefersDarkMode ? "dark" : "light",
+          primary: {
+            main: "#d51007",
+          },
+        },
+      }),
+    [prefersDarkMode],
+  );
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+
+      <Router>
+        <Switch>
+          {/* <Route path="/generate" component={ToDo} /> */}
+          <Route path="/" component={MainWrapper} />
+        </Switch>
+      </Router>
+    </ThemeProvider>
+  );
+};
