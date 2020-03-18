@@ -5,9 +5,13 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { AlbumProvider } from "./contexts/AlbumContext";
+import { ArtistProvider } from "./contexts/ArtistContext";
+import { ChartProvider } from "./contexts/ChartContext";
 import { HomePage } from "./pages/Home/Home";
 import { Main } from "./components/Main";
 import React from "react";
+import { TrackProvider } from "./contexts/TrackContext";
 
 const MainWrapper: React.FC = () => {
   return (
@@ -36,15 +40,23 @@ export const App: React.FC = () => {
   );
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <ChartProvider>
+      <AlbumProvider>
+        <ArtistProvider>
+          <TrackProvider>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
 
-      <Router>
-        <Switch>
+              <Router>
+                <Switch>
           {/* <Route path="/generate" component={ToDo} /> */}
-          <Route path="/" component={MainWrapper} />
-        </Switch>
-      </Router>
-    </ThemeProvider>
+                  <Route path="/" component={MainWrapper} />
+                </Switch>
+              </Router>
+            </ThemeProvider>
+          </TrackProvider>
+        </ArtistProvider>
+      </AlbumProvider>
+    </ChartProvider>
   );
 };
