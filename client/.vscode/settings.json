@@ -17,5 +17,5 @@
     "**/coverage": true,
     "**/.webpack": true
   },
-  "typescript.referencesCodeLens.enabled": true
+  "typescript.referencesCodeLens.enabled": false
 }
