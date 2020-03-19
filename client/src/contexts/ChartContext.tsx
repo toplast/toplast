@@ -36,10 +36,9 @@ export const ChartProvider = ({
     getChartTypeFromLocalStorage(),
   );
 
-  useEffect(
-    () => window.localStorage.setItem("chartType", JSON.stringify(chartType)),
-    [chartType],
-  );
+  useEffect(() => window.localStorage.setItem("chartType", chartType), [
+    chartType,
+  ]);
 
   return (
     <ChartContext.Provider value={{ chartType, setChartType }}>
