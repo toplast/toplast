@@ -13,8 +13,9 @@ export const ArtistHeaderComponent = ({
 
   useEffect(() => {
     const getPalette = async (): Promise<void> => {
-      const vibrant = new Vibrant(artist.image, { colorCount: 256 });
-      const vibrantPalette = await vibrant.getPalette();
+      const vibrantPalette = await Vibrant.from(artist.image)
+        .maxColorCount(64)
+        .getPalette();
 
       setPalette(vibrantPalette);
     };
