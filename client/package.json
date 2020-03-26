@@ -22,7 +22,7 @@
     "lint:fix": "eslint '**/*.{ts,tsx}' --fix",
     "cy": "cypress open",
     "cy:run": "cypress run",
-    "test": "start-server-and-test start http://localhost:3000 cy:run"
+    "test": "start-server-and-test start http://localhost:3000 \"cypress run\""
   },
   "dependencies": {
     "@material-ui/core": "^4.9.5",
@@ -43,6 +43,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
     "node-sass": "^4.13.1",
+    "node-vibrant": "^3.1.5",
     "prettier": "^1.19.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
