@@ -1,10 +1,10 @@
-import "./ArtistHeader.style.scss";
+import "./ArtistChartHeader.style.scss";
 import React, { useEffect, useState } from "react";
-import { IArtist } from "../../../contexts/ArtistContext";
+import { IArtist } from "../../contexts/ArtistContext";
 import { Palette } from "node-vibrant/lib/color";
 import Vibrant from "node-vibrant";
 
-export const ArtistHeaderComponent = ({
+export const ArtistChartHeaderComponent = ({
   artist,
 }: {
   artist: IArtist;
@@ -47,9 +47,9 @@ export const ArtistHeaderComponent = ({
           />
         </div>
         <div className="header__content">
-          <h2 className="header__content__description">Most listened artist</h2>
+          <h2 className="header__content__subtitle">Most listened artist</h2>
           <h1 className="header__content__title">{artist.name}</h1>
-          <h2 className="header__content__description">
+          <h2 className="header__content__subtitle">
             {artist.playcount} scrobbles
           </h2>
         </div>
