@@ -1,28 +1,15 @@
 import "./ArtistChartHeader.style.scss";
-import React, { useEffect, useState } from "react";
 import { IArtist } from "../../contexts/ArtistContext";
 import { Palette } from "node-vibrant/lib/color";
-import Vibrant from "node-vibrant";
+import React from "react";
 
 export const ArtistChartHeaderComponent = ({
   artist,
+  palette,
 }: {
   artist: IArtist;
+  palette: Palette | undefined;
 }): JSX.Element => {
-  const [palette, setPalette] = useState<Palette>();
-
-  useEffect(() => {
-    const getPalette = async (): Promise<void> => {
-      const vibrantPalette = await Vibrant.from(artist.image)
-        .maxColorCount(64)
-        .getPalette();
-
-      setPalette(vibrantPalette);
-    };
-
-    getPalette();
-  }, [artist.image]);
-
   return (
     <header>
       <div
