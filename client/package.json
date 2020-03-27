@@ -18,8 +18,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "lint": "eslint '**/*.{ts,tsx}'",
-    "lint:fix": "eslint '**/*.{ts,tsx}' --fix",
+    "lint": "yarn eslint && yarn stylelint",
+    "eslint": "eslint '**/*.{ts,tsx}'",
+    "stylelint": "stylelint '**/*.scss'",
+    "lint:fix": "yarn eslint:fix && yarn stylelint:fix",
+    "eslint:fix": "eslint '**/*.{ts,tsx}' --fix",
+    "stylelint:fix": "stylelint '**/*.scss' --fix",
     "cy": "cypress open",
     "cy:run": "cypress run",
     "test": "start-server-and-test start http://localhost:3000 \"cypress run\""
@@ -50,6 +54,9 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
     "start-server-and-test": "^1.10.8",
+    "stylelint": "^13.2.1",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-scss": "^3.16.0",
     "typescript": "~3.7.2"
   },
   "eslintConfig": {
