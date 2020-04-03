@@ -3,13 +3,15 @@ import { IArtist } from "../../contexts/ArtistContext";
 import { Palette } from "node-vibrant/lib/color";
 import React from "react";
 
-export const ArtistChartHeaderComponent = ({
+interface IArtistChartHeaderProps {
+  artist: IArtist;
+  palette?: Palette;
+}
+
+export const ArtistChartHeader = ({
   artist,
   palette,
-}: {
-  artist: IArtist;
-  palette: Palette | undefined;
-}): JSX.Element => {
+}: IArtistChartHeaderProps): JSX.Element => {
   return (
     <header>
       <div
