@@ -1,0 +1,20 @@
+@import "../../assets/colors/index";
+
+.footer {
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+
+  background-color: $primary;
+  color: $white;
+
+  border-color: $white;
+
+  position: absolute;
+  width: 100%;
+
+  z-index: 3;
+
+  align-items: center;
+  padding: 6px 16px;
+}
