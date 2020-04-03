@@ -53,6 +53,7 @@
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "sass-rem": "^2.0.1",
     "start-server-and-test": "^1.10.8",
     "stylelint": "^13.2.1",
     "stylelint-config-prettier": "^8.0.1",
