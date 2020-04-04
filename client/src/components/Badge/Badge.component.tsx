@@ -1,5 +1,5 @@
-import "./Badge.style.scss";
 import React from "react";
+import styles from "./Badge.module.scss";
 
 interface IBadgeProps {
   overlap?: "rectangle" | "circle";
@@ -17,10 +17,12 @@ export const Badge = ({
   overlap,
 }: IBadgeProps): JSX.Element => {
   return (
-    <span className="root">
+    <span className={styles.root}>
       {children}
       <span
-        className={`badge ${overlap}`}
+        className={`${styles.badge} subtitle-2 ${
+          overlap === "circle" ? styles.circle : styles.rectangle
+        }`}
         style={{ backgroundColor, color: textColor }}
       >
         {badgeContent}
