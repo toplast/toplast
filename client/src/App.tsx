@@ -9,7 +9,7 @@ import { AlbumProvider } from "./contexts/AlbumContext";
 import { ArtistProvider } from "./contexts/ArtistContext";
 import { ChartGenerator } from "./pages/ChartGenerator/ChartGenerator";
 import { ChartProvider } from "./contexts/ChartContext";
-import { HomePage } from "./pages/Home/Home";
+import { Home } from "./pages/Home/Home";
 import { Main } from "./components/Main";
 import React from "react";
 import { TrackProvider } from "./contexts/TrackContext";
@@ -18,7 +18,7 @@ const MainWrapper: React.FC = () => {
   return (
     <Main>
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" component={Home} />
       </Switch>
     </Main>
   );
