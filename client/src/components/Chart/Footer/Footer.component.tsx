@@ -1,20 +1,17 @@
-import "./ChartFooter.style.scss";
-import { DataType } from "../../pages/GenerateChart/GenerateChart.interface";
-import { IAlbum } from "../../contexts/AlbumContext";
-import { IArtist } from "../../contexts/ArtistContext";
-import { ITrack } from "../../contexts/TrackContext";
+import "./Footer.style.scss";
+import {
+  DataType,
+  section,
+} from "../../../pages/ChartGenerator/ChartGenerator.interface";
 import { Palette } from "node-vibrant/lib/color";
 import React from "react";
 
-export const ChartFooterComponent = ({
-  palette,
-  sections,
-}: {
-  palette: Palette | undefined;
-  sections:
-    | Partial<IAlbum & IArtist & ITrack & { dataType: DataType }>[]
-    | undefined;
-}): JSX.Element => {
+interface IFooterProps {
+  palette?: Palette;
+  sections?: section[];
+}
+
+export const Footer = ({ palette, sections }: IFooterProps): JSX.Element => {
   const getSectionNameByDataType = (dataType: DataType | undefined): string => {
     const sectionByDataType = {
       [DataType.ALBUM]: "Most listened album",
@@ -30,7 +27,7 @@ export const ChartFooterComponent = ({
   };
 
   return (
-    <div
+    <footer
       className="footer"
       style={{
         background: palette?.LightMuted?.getHex(),
@@ -47,18 +44,20 @@ export const ChartFooterComponent = ({
             />
           </div>
           <div className="footer__section__content">
-            <h4 className="footer__section__content__name">
+            <h4 className="footer__section__content__name body-1">
               {getSectionNameByDataType(section.dataType)}
             </h4>
-            <h2 className="footer__section__content__title">{section.name}</h2>
+            <h2 className="footer__section__content__title font-weight-medium headline-5 text-truncate">
+              {section.name}
+            </h2>
             {section?.artist && (
-              <h3 className="footer__section__content__subtitle">
+              <h3 className="footer__section__content__subtitle headline-6 text-truncate">
                 {section.artist}
               </h3>
             )}
           </div>
         </div>
       ))}
-    </div>
+    </footer>
   );
 };
