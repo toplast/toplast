@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { ChartType, IChart } from "./Chart.interface";
+import { ChartType, IChart } from "./ChartContext.interface";
 import React from "react";
 
 interface IChartProviderProps {
