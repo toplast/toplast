@@ -25,8 +25,7 @@ const getImageClass = (type?: DataType): string =>
 const contentClass = clsx(styles.section, "text-center");
 
 const textClass = clsx("body-1", "text-truncate", styles.text);
-
-const titleClass = clsx(textClass, "text-truncate", "font-weight-medium");
+const titleClass = clsx(textClass, "font-weight-medium");
 
 export const Body = ({ palette, contents }: IChartProps): JSX.Element => (
   <div className={styles.root} style={getTheme(palette)} id="body">
