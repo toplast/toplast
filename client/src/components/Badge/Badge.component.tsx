@@ -20,6 +20,7 @@ export const Badge = ({
     <span className={styles.root}>
       {children}
       <span
+        id="badgeLabel"
         className={`${styles.badge} subtitle-2 ${
           overlap === "circle" ? styles.circle : styles.rectangle
         }`}

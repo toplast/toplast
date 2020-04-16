@@ -63,7 +63,7 @@ describe("Album chart", () => {
 
           cy.root()
             .eq(position)
-            .find("#badge")
+            .find("#badgeLabel")
             .should("have.text", section.scrobbles);
         });
       });
