@@ -1,23 +1,12 @@
-import { Badge, IBadgeProps } from "../../Badge/Badge.component";
+import { Badge } from "../../Badge/Badge.component";
 import clsx from "clsx";
 import { DataType } from "../../../pages/ChartGenerator/ChartGenerator.interface";
 import { IChartProps } from "../Chart.interface";
-import { Palette } from "node-vibrant/lib/color";
 import React from "react";
 import styles from "./Body.module.scss";
 
 const getBadgeOverlap = (type?: DataType): "circle" | "rectangle" =>
   type === DataType.ARTIST ? "circle" : "rectangle";
-
-const getTheme = (palette?: Palette): React.CSSProperties => ({
-  background: palette?.Muted?.getHex(),
-  color: palette?.Muted?.getTitleTextColor(),
-});
-
-const getBadgeTheme = (palette?: Palette): Partial<IBadgeProps> => ({
-  backgroundColor: palette?.DarkMuted?.getHex(),
-  textColor: palette?.DarkMuted?.getTitleTextColor(),
-});
 
 const getImageClass = (type?: DataType): string =>
   clsx(styles.image, type === DataType.ARTIST && styles.round);
@@ -28,12 +17,20 @@ const textClass = clsx("body-1", "text-truncate", styles.text);
 const titleClass = clsx(textClass, "font-weight-medium");
 
 export const Body = ({ palette, contents }: IChartProps): JSX.Element => (
-  <div className={styles.root} style={getTheme(palette)} id="body">
+  <div
+    id="body"
+    className={styles.root}
+    style={{
+      background: palette?.Muted?.getHex(),
+      color: palette?.Muted?.getTitleTextColor(),
+    }}
+  >
     {contents?.map(content => (
       <div className={contentClass} key={content.name} data-cy="section">
         <Badge
           {...{
-            ...getBadgeTheme(palette),
+            backgroundColor: palette?.DarkMuted?.getHex(),
+            textColor: palette?.DarkMuted?.getTitleTextColor(),
             badgeContent: content.playcount,
             overlap: getBadgeOverlap(content.type),
           }}

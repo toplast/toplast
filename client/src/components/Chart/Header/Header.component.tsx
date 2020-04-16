@@ -1,68 +1,49 @@
-import {
-  DataType,
-  section,
-} from "../../../pages/ChartGenerator/ChartGenerator.interface";
 import clsx from "clsx";
-import { Palette } from "node-vibrant/lib/color";
+import { getSectionNameByDataType } from "../Chart.services";
+import { IChartProps } from "../Chart.interface";
 import React from "react";
 import styles from "./Header.module.scss";
 
-interface IClassicChartHeaderProps {
-  palette?: Palette;
-  section?: section;
-}
+const commonClass = clsx("text-truncate", styles.text);
+const titleClass = clsx("headline-3", commonClass);
+const subtitleClass = clsx("headline-4", "font-weight-light", commonClass);
+const textClassName = clsx("headline-5", commonClass);
 
-const getHeaderNameByDataType = (dataType?: DataType): string =>
-  ({
-    [DataType.ALBUM]: "Most listened album",
-    [DataType.ARTIST]: "Most listened artist",
-    [DataType.TRACK]: "Most listened track",
-    [DataType.UNDEFINED]: "Most listened",
-  }[dataType || DataType.UNDEFINED]);
+export const Header = ({ palette, content }: IChartProps): JSX.Element => (
+  <header
+    className={styles.root}
+    style={{
+      background: palette?.DarkMuted?.getHex(),
+      color: palette?.DarkMuted?.getTitleTextColor(),
+    }}
+  >
+    <div className={styles.background}>
+      <div
+        className={styles.image}
+        style={{
+          backgroundImage: `url(${content?.image})`,
+        }}
+      />
+      <div
+        className={styles.overlay}
+        style={{
+          background: `linear-gradient(0.25turn, rgba(${palette?.DarkMuted?.getRgb().join(
+            ", ",
+          )}, 1), rgba(${palette?.DarkMuted?.getRgb().join(", ")}, 0))`,
+        }}
+      />
+    </div>
 
-export const Header = ({
-  palette,
-  section,
-}: IClassicChartHeaderProps): JSX.Element => {
-  const theme: React.CSSProperties = {
-    background: palette?.DarkMuted?.getHex(),
-    color: palette?.DarkMuted?.getTitleTextColor(),
-  };
-  const image: React.CSSProperties = {
-    backgroundImage: `url(${section?.image})`,
-  };
-  const gradient: React.CSSProperties = {
-    background: `linear-gradient(0.25turn, rgba(${palette?.DarkMuted?.getRgb().join(
-      ", ",
-    )}, 1), rgba(${palette?.DarkMuted?.getRgb().join(", ")}, 0))`,
-  };
+    <div className={styles.content}>
+      <h2 className={textClassName}>
+        {getSectionNameByDataType(content?.type)}
+      </h2>
 
-  const commonClassName = clsx("text-truncate", styles.text);
+      <h1 className={titleClass}>{content?.name}</h1>
 
-  const titleClassName = clsx("headline-3", commonClassName);
-  const textClassName = clsx("headline-5", commonClassName);
-  const subtitleClassName = clsx(
-    "headline-4",
-    "font-weight-light",
-    commonClassName,
-  );
+      {content?.artist && <h2 className={subtitleClass}>{content?.artist}</h2>}
 
-  return (
-    <header className={styles.root} style={theme}>
-      <div className={styles.background}>
-        <div className={styles.image} style={image} />
-        <div className={styles.overlay} style={gradient} />
-      </div>
-      <div className={styles.content}>
-        <h2 className={textClassName}>
-          {getHeaderNameByDataType(section?.dataType)}
-        </h2>
-        <h1 className={titleClassName}>{section?.name}</h1>
-        {section?.artist && (
-          <h2 className={subtitleClassName}>{section?.artist}</h2>
-        )}
-        <h2 className={textClassName}>{section?.playcount} scrobbles</h2>
-      </div>
-    </header>
-  );
-};
+      <h2 className={textClassName}>{content?.playcount} scrobbles</h2>
+    </div>
+  </header>
+);

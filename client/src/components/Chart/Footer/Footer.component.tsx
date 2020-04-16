@@ -1,16 +1,9 @@
 import clsx from "clsx";
 import { DataType } from "../../../pages/ChartGenerator/ChartGenerator.interface";
+import { getSectionNameByDataType } from "../Chart.services";
 import { IChartProps } from "../Chart.interface";
 import React from "react";
 import styles from "./Footer.module.scss";
-
-const getSectionNameByDataType = (type?: DataType): string =>
-  ({
-    [DataType.ALBUM]: "Most listened album",
-    [DataType.ARTIST]: "Most listened artist",
-    [DataType.TRACK]: "Most listened track",
-    [DataType.UNDEFINED]: "Most listened",
-  }[type || DataType.UNDEFINED]);
 
 const getImageClass = (type?: DataType): string =>
   clsx(styles.image, type === DataType.ARTIST && styles.round);
