@@ -1,10 +1,5 @@
-import {
-  chartData,
-  DataType,
-  IGetPalette,
-  section,
-} from "./ChartGenerator.interface";
-import { ChartType } from "../../contexts/ChartContext";
+import { ChartType, IChart } from "../../contexts/Chart/ChartContext.interface";
+import { content, DataType, IGetPalette } from "./ChartGenerator.interface";
 import Vibrant from "node-vibrant";
 
 export const getPalette = async ({
@@ -22,46 +17,45 @@ export const getPalette = async ({
   }
 };
 
-export const getImageByChartType = ([
-  albumImage,
-  artistImage,
-  trackImage,
-]: string[]) => (chartType: ChartType): string =>
+export const getImageByChartType = (chart: IChart): string =>
   ({
-    [ChartType.TOP_ALBUMS]: albumImage,
-    [ChartType.TOP_ARTISTS]: artistImage,
-    [ChartType.TOP_TRACKS]: trackImage,
-  }[chartType]);
+    [ChartType.TOP_ALBUMS]: chart.albums[0].image,
+    [ChartType.TOP_ARTISTS]: chart.artists[0].image,
+    [ChartType.TOP_TRACKS]: chart.tracks[0].image,
+  }[chart.type]);
 
-export const getBodyByChartType = ([albums, artists, tracks]: chartData) => (
-  chartType: ChartType,
-): section[] =>
+export const getHeaderContentByChartType = (chart: IChart): content =>
   ({
-    [ChartType.TOP_ALBUMS]: albums
-      .slice(1)
-      .map(album => ({ ...album, dataType: DataType.ALBUM })),
-    [ChartType.TOP_ARTISTS]: artists
-      .slice(1)
-      .map(artist => ({ ...artist, dataType: DataType.ARTIST })),
-    [ChartType.TOP_TRACKS]: tracks
-      .slice(1)
-      .map(track => ({ ...track, dataType: DataType.TRACK })),
-  }[chartType]);
+    [ChartType.TOP_ALBUMS]: { ...chart.albums[0], type: DataType.ALBUM },
+    [ChartType.TOP_ARTISTS]: { ...chart.artists[0], type: DataType.ARTIST },
+    [ChartType.TOP_TRACKS]: { ...chart.tracks[0], type: DataType.TRACK },
+  }[chart.type]);
 
-export const getFooterByChartType = ([albums, artists, tracks]: chartData) => (
-  chartType: ChartType,
-): section[] =>
+export const getBodyContentsByChartType = (chart: IChart): content[] =>
+  ({
+    [ChartType.TOP_ALBUMS]: chart.albums
+      .slice(1)
+      .map(album => ({ ...album, type: DataType.ALBUM })),
+    [ChartType.TOP_ARTISTS]: chart.artists
+      .slice(1)
+      .map(artist => ({ ...artist, type: DataType.ARTIST })),
+    [ChartType.TOP_TRACKS]: chart.tracks
+      .slice(1)
+      .map(track => ({ ...track, type: DataType.TRACK })),
+  }[chart.type]);
+
+export const getFooterContentsByChartType = (chart: IChart): content[] =>
   ({
     [ChartType.TOP_ALBUMS]: [
-      { ...artists[0], dataType: DataType.ARTIST },
-      { ...tracks[0], dataType: DataType.TRACK },
+      { ...chart.artists[0], type: DataType.ARTIST },
+      { ...chart.tracks[0], type: DataType.TRACK },
     ],
     [ChartType.TOP_ARTISTS]: [
-      { ...albums[0], dataType: DataType.ALBUM },
-      { ...tracks[0], dataType: DataType.TRACK },
+      { ...chart.albums[0], type: DataType.ALBUM },
+      { ...chart.tracks[0], type: DataType.TRACK },
     ],
     [ChartType.TOP_TRACKS]: [
-      { ...albums[0], dataType: DataType.ALBUM },
-      { ...artists[0], dataType: DataType.ARTIST },
+      { ...chart.albums[0], type: DataType.ALBUM },
+      { ...chart.artists[0], type: DataType.ARTIST },
     ],
-  }[chartType]);
+  }[chart.type]);

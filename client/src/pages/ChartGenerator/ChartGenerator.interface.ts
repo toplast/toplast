@@ -1,13 +1,15 @@
-import { ChartType } from "../../contexts/ChartContext";
-import { IAlbum } from "../../contexts/AlbumContext";
-import { IArtist } from "../../contexts/ArtistContext";
-import { ITrack } from "../../contexts/TrackContext";
+import {
+  album,
+  artist,
+  track,
+} from "../../contexts/Chart/ChartContext.interface";
 import { Palette } from "node-vibrant/lib/color";
 
 export enum DataType {
   ALBUM = "album",
   ARTIST = "artist",
   TRACK = "track",
+  UNDEFINED = "undefined",
 }
 
 export interface IGetPalette {
@@ -15,14 +17,6 @@ export interface IGetPalette {
   setPalette(palette: Palette): void;
 }
 
-export interface ISections {
-  [ChartType.TOP_ALBUMS]: section[];
-  [ChartType.TOP_ARTISTS]: section[];
-  [ChartType.TOP_TRACKS]: section[];
-}
+export type content = Partial<album & artist & track & { type: DataType }>;
 
-export type section = Partial<
-  IAlbum & IArtist & ITrack & { dataType: DataType }
->;
-
-export type chartData = [IAlbum[], IArtist[], ITrack[]];
+export type chartData = [album[], artist[], track[]];
