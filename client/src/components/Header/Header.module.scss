@@ -22,8 +22,7 @@
 .toolbar {
   min-height: 56px;
 
-  padding-left: 16px;
-  padding-right: 16px;
+  padding: 4px 16px;
 
   display: flex;
   position: relative;
@@ -39,12 +38,10 @@
 @media (min-width: 600px) {
   .toolbar {
     min-height: 64px;
-
-    padding-left: 24px;
-    padding-right: 24px;
   }
 }
 
 .title {
   margin: 0;
+  cursor: pointer;
 }

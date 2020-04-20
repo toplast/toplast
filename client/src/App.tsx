@@ -6,7 +6,7 @@ import {
 } from "@material-ui/core";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import { ChartGenerator } from "./pages/ChartGenerator/ChartGenerator";
-import { ChartProvider } from "./contexts/Chart/Chart.context";
+import { ChartProvider } from "./contexts/Chart/ChartContext";
 import { Home } from "./pages/Home/Home";
 import { Main } from "./components/Main";
 import React from "react";
