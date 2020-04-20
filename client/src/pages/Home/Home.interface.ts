@@ -1,4 +1,4 @@
-import { ChartType } from "../../contexts/ChartContext";
+import { ChartType } from "../../contexts/Chart/ChartContext.interface";
 
 export enum Period {
   SEVEN_DAYS = "7day",

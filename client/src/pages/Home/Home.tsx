@@ -1,21 +1,17 @@
-import { ChartContext, ChartType } from "../../contexts/ChartContext";
 import { IFormData, START_FORM_DATA } from "./Home.interface";
 import React, { useContext, useState } from "react";
-import { AlbumContext } from "../../contexts/AlbumContext";
-import { ArtistContext } from "../../contexts/ArtistContext";
+import { ChartContext } from "../../contexts/Chart/ChartContext";
 import { ChartFormComponent } from "../../components/ChartForm/ChartForm.component";
+import { ChartType } from "../../contexts/Chart/ChartContext.interface";
+import clsx from "clsx";
 import { getChartData } from "./Home.service";
 import styles from "./Home.module.scss";
-import { TrackContext } from "../../contexts/TrackContext";
 import { useHistory } from "react-router-dom";
 
 export const Home = (): JSX.Element => {
   const history = useHistory();
 
-  const { setChartType } = useContext(ChartContext);
-  const { setAlbums } = useContext(AlbumContext);
-  const { setArtists } = useContext(ArtistContext);
-  const { setTracks } = useContext(TrackContext);
+  const { setChart } = useContext(ChartContext);
 
   const [loading, setLoading] = React.useState(false);
   const [formData, setFormData] = useState<Partial<IFormData>>(START_FORM_DATA);
@@ -30,24 +26,32 @@ export const Home = (): JSX.Element => {
   const generateChart = async (): Promise<void> => {
     setLoading(true);
 
+    if (!formData.user) {
+      setLoading(false);
+      return;
+    }
+
     const [albumData, artistData, trackData] = await getChartData(formData);
 
-    setChartType(formData.chart as ChartType);
-    setAlbums(albumData);
-    setArtists(artistData);
-    setTracks(trackData);
+    setChart({
+      albums: albumData,
+      artists: artistData,
+      tracks: trackData,
+      type: formData.chart as ChartType,
+    });
 
     history.push("/generate");
   };
 
+  const titleClass = clsx("headline-4", "font-weight-regular", styles.text);
+  const subtitleClass = clsx("headline-6", styles.text);
+
   return (
     <div className="text-center">
-      <h1 className={`headline-4 font-weight-regular ${styles.title}`}>
-        TopLast
-      </h1>
-      <h2 className={`headline-6 ${styles.subtitle}`}>
-        A Last.fm chart generator
-      </h2>
+      <div className={styles.container}>
+        <h1 className={titleClass}>TopLast</h1>
+        <h2 className={subtitleClass}>A Last.fm chart generator</h2>
+      </div>
 
       <ChartFormComponent
         {...{ formData, changeFormData, generateChart, loading }}

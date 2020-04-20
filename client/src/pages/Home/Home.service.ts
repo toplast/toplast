@@ -1,15 +1,17 @@
+import {
+  album,
+  artist,
+  ChartType,
+  track,
+} from "../../contexts/Chart/ChartContext.interface";
 import axios from "axios";
-import { ChartType } from "../../contexts/ChartContext";
-import { IAlbum } from "../../contexts/AlbumContext";
-import { IArtist } from "../../contexts/ArtistContext";
 import { IFormData } from "./Home.interface";
-import { ITrack } from "../../contexts/TrackContext";
 
 const getAlbumData = async ({
   user,
   period,
   chart,
-}: Partial<IFormData>): Promise<IAlbum[]> => {
+}: Partial<IFormData>): Promise<album[]> => {
   const limit = chart === ChartType.TOP_ALBUMS ? 5 : 1;
 
   const { data } = await axios.get("/getAlbums", {
@@ -23,7 +25,7 @@ const getArtistData = async ({
   user,
   period,
   chart,
-}: Partial<IFormData>): Promise<IArtist[]> => {
+}: Partial<IFormData>): Promise<artist[]> => {
   const limit = chart === ChartType.TOP_ARTISTS ? 5 : 1;
 
   const { data } = await axios.get("/getArtists", {
@@ -37,7 +39,7 @@ const getTrackData = async ({
   user,
   period,
   chart,
-}: Partial<IFormData>): Promise<ITrack[]> => {
+}: Partial<IFormData>): Promise<track[]> => {
   const limit = chart === ChartType.TOP_TRACKS ? 5 : 1;
 
   const { data } = await axios.get("/getTracks", {
@@ -51,16 +53,16 @@ export const getChartData = async ({
   user,
   period,
   chart,
-}: Partial<IFormData>): Promise<[IAlbum[], IArtist[], ITrack[]]> => {
+}: Partial<IFormData>): Promise<[album[], artist[], track[]]> => {
   const promiseChartData: [
-    Promise<IAlbum[]>,
-    Promise<IArtist[]>,
-    Promise<ITrack[]>,
+    Promise<album[]>,
+    Promise<artist[]>,
+    Promise<track[]>,
   ] = [
     getAlbumData({ user, period, chart }),
     getArtistData({ user, period, chart }),
     getTrackData({ user, period, chart }),
   ];
 
-  return Promise.all<IAlbum[], IArtist[], ITrack[]>(promiseChartData);
+  return Promise.all<album[], artist[], track[]>(promiseChartData);
 };
