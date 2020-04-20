@@ -1,0 +1,7 @@
+{
+  "extends": ["stylelint-scss", "stylelint-config-prettier"],
+  "rules": {
+    "max-nesting-depth": 10,
+    "selector-max-id": 1
+  }
+}

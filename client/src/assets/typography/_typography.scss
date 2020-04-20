@@ -1,0 +1,113 @@
+@import "variables";
+
+.headline-1 {
+  font-size: rem(96px);
+  line-height: rem(96px);
+  letter-spacing: rem(-1.5px);
+}
+
+.headline-2 {
+  font-size: rem(60px);
+  line-height: rem(60px);
+  letter-spacing: rem(-0.5px);
+}
+
+.headline-3 {
+  font-size: rem(48px);
+  line-height: rem(50px);
+  letter-spacing: rem(0px);
+}
+
+.headline-4 {
+  font-size: rem(34px);
+  line-height: rem(40px);
+  letter-spacing: rem(0.25px);
+}
+
+.headline-5 {
+  font-size: rem(24px);
+  letter-spacing: rem(0px);
+}
+
+.headline-6 {
+  font-size: rem(20px);
+  letter-spacing: rem(0.15px);
+}
+
+.subtitle-1 {
+  font-size: rem(16px);
+  line-height: rem(28px);
+  letter-spacing: rem(0.15px);
+}
+
+.subtitle-2 {
+  font-size: rem(14px);
+  line-height: rem(22px);
+  letter-spacing: rem(0.1px);
+  font-weight: $medium;
+}
+
+.body-1 {
+  font-size: rem(16px);
+  line-height: rem(24px);
+  letter-spacing: rem(0.5px);
+}
+
+.body-2 {
+  font-size: rem(14px);
+  letter-spacing: rem(0.25px);
+}
+
+.caption {
+  font-size: rem(12px);
+  letter-spacing: rem(0.4px);
+}
+
+.button {
+  font-size: rem(14px);
+  line-height: rem(36px);
+  letter-spacing: rem(1.25px);
+}
+
+.overline {
+  font-size: rem(10px);
+  line-height: rem(32px);
+  letter-spacing: rem(1.5px);
+}
+
+.headline-1,
+.headline-2,
+.headline-3,
+.headline-4,
+.headline-5,
+.headline-6,
+.subtitle-1,
+.subtitle-2,
+.body-1,
+.body-2,
+.caption {
+  text-decoration: inherit;
+  text-transform: inherit;
+}
+
+.headline-5,
+.headline-6 {
+  line-height: rem(32px);
+  font-weight: $light;
+}
+
+.body-2,
+.caption {
+  line-height: rem(20px);
+}
+
+.button,
+.overline {
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.headline-3,
+.body-1 {
+  font-weight: $regular;
+}

@@ -1,0 +1,9 @@
+@import "~sass-rem/rem";
+@import "assets/typography/index";
+
+html,
+body,
+#root {
+  height: 100%;
+  // overflow: hidden;
+}

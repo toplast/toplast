@@ -1,0 +1,34 @@
+.root {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+
+  height: 275px;
+  padding: 0 8px;
+}
+
+.section {
+  flex: 0 0 25%;
+  max-width: 25%;
+  width: 100%;
+}
+
+.image {
+  width: 165px;
+  height: 165px;
+  object-fit: cover;
+}
+
+.round {
+  width: 170px !important;
+  height: 170px !important;
+  border-radius: 100%;
+}
+
+.content {
+  padding: 8px 0;
+}
+
+.text {
+  margin: 0;
+}
