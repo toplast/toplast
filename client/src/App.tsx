@@ -5,6 +5,7 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { Chart } from "./pages/Chart/Chart";
 import { ChartGenerator } from "./pages/ChartGenerator/ChartGenerator";
 import { ChartProvider } from "./contexts/Chart/ChartContext";
 import { Home } from "./pages/Home/Home";
@@ -16,6 +17,7 @@ const MainWrapper: React.FC = () => {
     <Main>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/chart" component={Chart} />
       </Switch>
     </Main>
   );
