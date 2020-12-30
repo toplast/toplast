@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-import Infographic from '../components/Infographic'
+import Infographic from 'components/Infographic'
 
 export default function Home() {
   return (

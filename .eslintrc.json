@@ -2,7 +2,7 @@
   "env": { "browser": true, "es2020": true, "node": true },
   "settings": {
     "react": { "version": "detect" },
-    "import/internal-regex": "^components"
+    "import/internal-regex": "^components|^styles"
   },
   "extends": [
     "eslint:recommended",
