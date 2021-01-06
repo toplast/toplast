@@ -1,13 +1,10 @@
 import styled, { css } from 'styled-components'
 
-export const Wrapper = styled.div<{
-  backgroundColor: string
-  textColor: string
-}>`
+export const Wrapper = styled.div<{ backgroundColor?: string; textColor?: string }>`
   height: 325px;
   position: relative;
 
-  ${({ backgroundColor, textColor }) => {
+  ${({ backgroundColor = '#fff', textColor = '#000' }) => {
     return css`
       background: ${backgroundColor};
       color: ${textColor};
@@ -26,7 +23,7 @@ export const Background = styled.div`
   right: 0;
 `
 
-export const Image = styled.div<{ src: string }>`
+export const Image = styled.div<{ src?: string }>`
   width: 100%;
   height: 100%;
 
@@ -35,14 +32,14 @@ export const Image = styled.div<{ src: string }>`
   background-position: 50% 25%;
   background-size: cover;
 
-  ${({ src }) => {
+  ${({ src = '' }) => {
     return css`
       background-image: url(${src});
     `
   }}
 `
 
-export const Overlay = styled.div<{ color: string }>`
+export const Overlay = styled.div<{ color?: string }>`
   width: 100%;
   height: 100%;
 
@@ -50,13 +47,9 @@ export const Overlay = styled.div<{ color: string }>`
 
   transform-origin: center left;
 
-  ${({ color }) => {
+  ${({ color = '255, 255, 255' }) => {
     return css`
-      background: linear-gradient(
-        0.25turn,
-        rgba(${color}, 1),
-        rgba(${color}, 0)
-      );
+      background: linear-gradient(0.25turn, rgba(${color}, 1), rgba(${color}, 0));
     `
   }}
 `
