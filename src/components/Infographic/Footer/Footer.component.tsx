@@ -1,19 +1,11 @@
 import { Palette } from 'node-vibrant/lib/color'
 
 import * as S from './Footer.styles'
-import { getDescriptionByType } from 'components/Infographic'
-
-type DataType = 'album' | 'artist' | 'track' | 'undefined'
+import { Content, getDescriptionByType } from 'components/Infographic'
 
 interface Props {
   colorPalette: Palette
-  data: Partial<{
-    artist: string
-    image: string
-    name: string
-    playcount: string
-    type: DataType
-  }>[]
+  data: Partial<Content>[]
 }
 
 const Footer = ({ colorPalette, data }: Partial<Props>) => {

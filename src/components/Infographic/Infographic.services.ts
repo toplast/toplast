@@ -1,6 +1,8 @@
 import Vibrant from 'node-vibrant'
 import { Palette } from 'node-vibrant/lib/color'
 
+import { ContentType } from 'components/Infographic'
+
 export const getColorPalette = async (image: string, setColorPalette: (palette: Palette) => void) => {
   try {
     const colorPalette = await Vibrant.from(image).maxColorCount(32).getPalette()
@@ -11,7 +13,7 @@ export const getColorPalette = async (image: string, setColorPalette: (palette: 
   }
 }
 
-export const getDescriptionByType = (type?: 'album' | 'artist' | 'track' | 'undefined') =>
+export const getDescriptionByType = (type?: ContentType) =>
   ({
     album: 'Most listened album',
     artist: 'Most listened artist',

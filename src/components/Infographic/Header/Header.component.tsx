@@ -1,22 +1,14 @@
 import { Palette } from 'node-vibrant/lib/color'
 
 import * as S from './Header.styles'
-import { getDescriptionByType } from 'components/Infographic'
-
-type DataType = 'album' | 'artist' | 'track' | 'undefined'
+import { Content, getDescriptionByType } from 'components/Infographic'
 
 interface Props {
-  colorPalette?: Palette
-  data?: Partial<{
-    artist: string
-    image: string
-    name: string
-    playcount: string
-    type: DataType
-  }>
+  colorPalette: Palette
+  data: Partial<Content>
 }
 
-const Header = ({ colorPalette, data }: Props) => {
+const Header = ({ colorPalette, data }: Partial<Props>) => {
   const backgroundColor = colorPalette?.DarkMuted?.hex
   const textColor = colorPalette?.DarkMuted?.titleTextColor
   const color = colorPalette?.DarkMuted?.rgb.join(',')

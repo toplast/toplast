@@ -2,18 +2,11 @@ import { Palette } from 'node-vibrant/lib/color'
 
 import * as S from './Body.styles'
 import Badge from 'components/Badge'
-
-type DataType = 'album' | 'artist' | 'track' | 'undefined'
+import { Content } from 'components/Infographic'
 
 interface Props {
   colorPalette: Palette
-  data: Partial<{
-    artist: string
-    image: string
-    name: string
-    playcount: string
-    type: DataType
-  }>[]
+  data: Partial<Content>[]
 }
 
 const Body = ({ colorPalette, data }: Partial<Props>) => {
