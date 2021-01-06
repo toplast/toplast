@@ -1,1 +1,1 @@
-{ "semi": false, "singleQuote": true }
+{ "semi": false, "singleQuote": true, "printWidth": 120 }
