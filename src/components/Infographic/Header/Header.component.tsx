@@ -1,6 +1,7 @@
 import { Palette } from 'node-vibrant/lib/color'
 
 import * as S from './Header.styles'
+import { getDescriptionByType } from 'components/Infographic'
 
 type DataType = 'album' | 'artist' | 'track' | 'undefined'
 
@@ -20,16 +21,6 @@ const Header = ({ colorPalette, data }: Props) => {
   const textColor = colorPalette?.DarkMuted?.titleTextColor
   const color = colorPalette?.DarkMuted?.rgb.join(',')
 
-  const getDescriptionByType = (
-    type?: 'album' | 'artist' | 'track' | 'undefined'
-  ) =>
-    ({
-      album: 'Most listened album',
-      artist: 'Most listened artist',
-      track: 'Most listened track',
-      undefined: 'Most listened',
-    }[type || 'undefined'])
-
   return (
     <S.Wrapper {...{ backgroundColor, textColor }}>
       <S.Background>
@@ -38,9 +29,7 @@ const Header = ({ colorPalette, data }: Props) => {
       </S.Background>
 
       <S.Content>
-        <S.Description as="h1">
-          {getDescriptionByType(data?.type)}
-        </S.Description>
+        <S.Description as="h1">{getDescriptionByType(data?.type)}</S.Description>
 
         <S.Title as="h1">{data?.name}</S.Title>
 
