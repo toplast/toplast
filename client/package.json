@@ -9,7 +9,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "core-js": "^3.1.4",
     "get-best-contrast-color": "^0.3.1",
     "get-contrast-ratio": "^0.2.1",
