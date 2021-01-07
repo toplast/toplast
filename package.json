@@ -10,7 +10,11 @@
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
+    "@toplast/lastfm": "0.1.2",
+    "axios": "0.21.1",
+    "dotenv": "^8.2.0",
     "next": "10.0.4",
+    "next-images": "1.6.2",
     "node-vibrant": "3.1.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -19,6 +23,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
+    "@now/node": "^1.8.5",
     "@types/node": "^14.14.17",
     "@types/react": "^17.0.0",
     "@types/styled-components": "^5.1.7",
@@ -34,6 +39,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.2.1",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
     "typescript": "^4.1.3"
   }
 }
