@@ -2,7 +2,7 @@
   "env": { "browser": true, "es2020": true, "node": true },
   "settings": {
     "react": { "version": "detect" },
-    "import/internal-regex": "^components|^styles"
+    "import/internal-regex": "^components|^styles|^services"
   },
   "extends": [
     "eslint:recommended",
@@ -17,24 +17,14 @@
     "ecmaVersion": 11,
     "sourceType": "module"
   },
-  "plugins": [
-    "@typescript-eslint",
-    "import",
-    "prettier",
-    "react-hooks",
-    "react"
-  ],
+  "plugins": ["@typescript-eslint", "import", "prettier", "react-hooks", "react"],
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "import/order": [
       "error",
       {
         "alphabetize": { "caseInsensitive": true, "order": "asc" },
-        "groups": [
-          "builtin",
-          "external",
-          ["internal", "parent", "sibling", "index"]
-        ],
+        "groups": ["builtin", "external", ["internal", "parent", "sibling", "index"]],
         "newlines-between": "always"
       }
     ],
