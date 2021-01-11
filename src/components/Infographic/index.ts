@@ -1,6 +1,6 @@
-import Body from './Body'
-import Footer from './Footer'
-import Header from './Header'
+import { Body } from './Body/Body.component'
+import { Footer } from './Footer/Footer.component'
+import { Header } from './Header/Header.component'
 import { Infographic } from './Infographic.component'
 
 export { Body, Footer, Header }
