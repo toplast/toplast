@@ -19,7 +19,9 @@ const Footer = ({ colorPalette, data }: Partial<Props>) => {
           <S.Image src={d.image} rounded={d.type === 'artist'} />
 
           <S.Content>
-            <S.Description as="h1">{getDescriptionByType(d.type)}</S.Description>
+            <S.Description as="h1">
+              {getDescriptionByType(d.type)}
+            </S.Description>
             <S.Title as="h1">{d.name}</S.Title>
             {d.artist && <S.Subtitle as="h2">{d.artist}</S.Subtitle>}
           </S.Content>

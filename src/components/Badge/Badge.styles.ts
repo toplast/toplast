@@ -5,7 +5,11 @@ export const Wrapper = styled.div`
   position: relative;
 `
 
-export const Badge = styled.span<{ backgroundColor?: string; textColor?: string; rounded?: boolean }>`
+export const Badge = styled.span<{
+  backgroundColor?: string
+  textColor?: string
+  rounded?: boolean
+}>`
   display: flex;
   position: absolute;
   transform: scale(1) translate(-50%, -50%);

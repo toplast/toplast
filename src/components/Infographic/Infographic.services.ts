@@ -3,9 +3,14 @@ import { Palette } from 'node-vibrant/lib/color'
 
 import { ContentType } from 'components/Infographic'
 
-export const getColorPalette = async (image: string, setColorPalette: (palette: Palette) => void) => {
+export const getColorPalette = async (
+  image: string,
+  setColorPalette: (palette: Palette) => void
+) => {
   try {
-    const colorPalette = await Vibrant.from(image).maxColorCount(32).getPalette()
+    const colorPalette = await Vibrant.from(image)
+      .maxColorCount(32)
+      .getPalette()
 
     setColorPalette(colorPalette)
   } catch (error) {

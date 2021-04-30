@@ -1,11 +1,14 @@
 import LastFm from '@toplast/lastfm'
 import { createContext, useState } from 'react'
 
+import { ScreenShot } from './screenshot'
+
 /**
  * Dependencies
  */
 const dependencies = {
   lastFm: LastFm,
+  screenshot: ScreenShot,
 }
 
 /**
@@ -13,6 +16,7 @@ const dependencies = {
  */
 type InstanceOfDependencies = {
   lastFm: LastFm
+  screenshot: ScreenShot
 }
 
 type DependenciesProps = typeof dependencies
@@ -30,13 +34,18 @@ type State = {
   [K in keyof InstanceDependencies]?: InstanceDependencies[K]
 }
 
-type ReturnOfContext<R extends DependenciesKeys> = InstanceOfDependencies[R] | false
+type ReturnOfContext<R extends DependenciesKeys> =
+  | InstanceOfDependencies[R]
+  | false
 
 /**
  * Methods
  */
 interface ContextMethods {
-  create: <S extends DependenciesKeys>(service: S, options?: DependenciesParameters[S]) => ReturnOfContext<S>
+  create: <S extends DependenciesKeys>(
+    service: S,
+    options?: DependenciesParameters[S]
+  ) => ReturnOfContext<S>
   get: <S extends DependenciesKeys>(service: S) => ReturnOfContext<S>
   destroy: (service: DependenciesKeys) => boolean
   dependencies: State
@@ -106,7 +115,9 @@ const DependenciesProvider: React.FC = ({ children }) => {
   /**
    * Get a the instance of dependency
    */
-  const get: ContextMethods['get'] = <S extends DependenciesKeys>(service: S) => {
+  const get: ContextMethods['get'] = <S extends DependenciesKeys>(
+    service: S
+  ) => {
     if (initialized[service]) {
       return initialized[service] as InstanceOfDependencies[S]
     }
@@ -115,7 +126,9 @@ const DependenciesProvider: React.FC = ({ children }) => {
   }
 
   return (
-    <DependenciesContext.Provider value={{ create, destroy, get, dependencies: initialized }}>
+    <DependenciesContext.Provider
+      value={{ create, destroy, get, dependencies: initialized }}
+    >
       {children}
     </DependenciesContext.Provider>
   )

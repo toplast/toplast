@@ -8,7 +8,13 @@ interface Props {
   textColor: string
 }
 
-const Badge = ({ backgroundColor, children, content, rounded, textColor }: Partial<Props>) => (
+const Badge = ({
+  backgroundColor,
+  children,
+  content,
+  rounded,
+  textColor,
+}: Partial<Props>) => (
   <S.Wrapper>
     {children}
     <S.Badge {...{ backgroundColor, textColor, rounded }}>{content}</S.Badge>

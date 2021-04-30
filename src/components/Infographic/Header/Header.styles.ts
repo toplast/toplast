@@ -1,6 +1,9 @@
 import styled, { css } from 'styled-components'
 
-export const Wrapper = styled.div<{ backgroundColor?: string; textColor?: string }>`
+export const Wrapper = styled.div<{
+  backgroundColor?: string
+  textColor?: string
+}>`
   height: 325px;
   position: relative;
 
@@ -49,7 +52,11 @@ export const Overlay = styled.div<{ color?: string }>`
 
   ${({ color = '255, 255, 255' }) => {
     return css`
-      background: linear-gradient(0.25turn, rgba(${color}, 1), rgba(${color}, 0));
+      background: linear-gradient(
+        0.25turn,
+        rgba(${color}, 1),
+        rgba(${color}, 0)
+      );
     `
   }}
 `

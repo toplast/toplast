@@ -21,7 +21,9 @@ const Header = ({ colorPalette, data }: Partial<Props>) => {
       </S.Background>
 
       <S.Content>
-        <S.Description as="h1">{getDescriptionByType(data?.type)}</S.Description>
+        <S.Description as="h1">
+          {getDescriptionByType(data?.type)}
+        </S.Description>
 
         <S.Title as="h1">{data?.name}</S.Title>
 
