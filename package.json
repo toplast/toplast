@@ -17,7 +17,7 @@
     "axios": "0.21.1",
     "dotenv": "8.2.0",
     "html2canvas": "^1.0.0-rc.7",
-    "next": "10.0.4",
+    "next": "11.1.1",
     "next-images": "1.6.2",
     "node-vibrant": "3.1.6",
     "react": "17.0.1",
